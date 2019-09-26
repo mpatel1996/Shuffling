@@ -1,0 +1,27 @@
+{
+  "name": "shuffling",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uss-moon/Shuffling.git"
+  },
+  "author": "USS-Moon (Branden Hitt, Jin Young You, John Escalona, Kevin Ly, Mihir Patel)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uss-moon/Shuffling/issues"
+  },
+  "homepage": "https://github.com/uss-moon/Shuffling#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cities": "^2.0.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.1"
+  },
+  "devDependencies": {},
+  "description": ""
+}
