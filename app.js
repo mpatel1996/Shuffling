@@ -6,6 +6,19 @@ var express = require("express"),
   colors = require("colors"); //library to use colors for text
 app = express();
 
+// For Twitter Bot
+const Twitter = require('twitter');
+const config = require('./config.js');
+const T = new Twitter(config);
+
+const params = {
+  q: '#software',
+  count: 10,
+  result_type: 'recent',
+  lang: 'en'
+}
+// End use of twitter bot stuff
+
 const PORT = 3000;
 
 app.set("view engine", "ejs");
@@ -45,6 +58,34 @@ app.post("/register", function(req, res) {
     warning: yellow,
    }
 });
+
+
+// Added twitter bot that prints tweets link for #software to console.
+T.get('search/tweets', params, (err, data, response) => {
+  // If there is no error, proceed
+  if(err){
+    return console.log(err);
+  }
+
+  // Loop through the returned tweets
+  const tweetsId = data.statuses
+    .map(tweet => ({ id: tweet.id_str }));
+
+  tweetsId.map(tweetId => {
+    T.post('favorites/create', tweetId, (err, response) => {
+      if(err){
+        return console.log(err[0].message);
+      }
+
+      const username = response.user.screen_name;
+      const favoritedTweetId = response.id_str;
+	  console.log(`Favorited: https://twitter.com/${username}/status/${favoritedTweetId}`);
+
+    });
+  });
+})
+
+// Ended
 
 //default route
 app.get("*", function(req, res) {
