@@ -3,6 +3,7 @@ var express = require("express"),
   User = require("./models/user"),
   bodyParser = require("body-parser"),
   cities = require("cities"); // lib to lookup cities by zip or lat-long
+  colors = require("colors"); //library to use colors for text
 app = express();
 
 const PORT = 3000;
@@ -36,9 +37,13 @@ app.post("/register", function(req, res) {
       userAddress.state_abbr +
       "</h3>"
   );
-
+  
   //TODO: database integration
   let city, state, zipCode, country;
+   colors.setTheme({
+    error: red,
+    warning: yellow,
+   }
 });
 
 //default route
