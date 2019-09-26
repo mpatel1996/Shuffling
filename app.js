@@ -6,6 +6,11 @@ var express = require("express"),
 app = express();
 
 const PORT = 3000;
+const connectionString =
+  "mongodb+srv://jrescalona:Testing2019@cluster0-e1ig7.mongodb.net/users?retryWrites=true&w=majority";
+
+//connect to mongoDB
+mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.set("view engine", "ejs");
 
@@ -25,20 +30,22 @@ app.get("/register", function(req, res) {
 app.post("/register", function(req, res) {
   //request location from Cities library
   let userAddress = cities.zip_lookup(req.body.zipCode);
-  res.send(
-    "<h2>Welcome " +
-      req.body.firstName +
-      " " +
-      req.body.lastName +
-      "! </h2><h3>from " +
-      userAddress.city +
-      ", " +
-      userAddress.state_abbr +
-      "</h3>"
+  User.create(
+    {
+      userFirstName: req.body.firstName,
+      userLastName: req.body.lastName,
+      city: userAddress.city,
+      state: userAddress.state,
+      zipCode: userAddress.zipcode
+    },
+    function(err, newUser) {
+      if (err) {
+        res.send("You flocked up!\n" + err);
+      } else {
+        res.redirect("index");
+      }
+    }
   );
-
-  //TODO: database integration
-  let city, state, zipCode, country;
 });
 
 //default route

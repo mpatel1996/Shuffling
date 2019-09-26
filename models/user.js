@@ -5,8 +5,7 @@ var userSchema = new mongoose.Schema({
   userLastName: String,
   city: String,
   state: String,
-  zipCode: String,
-  country: String
+  zipCode: String
 });
 
 module.exports = mongoose.model("User", userSchema);
