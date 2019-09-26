@@ -2,8 +2,9 @@ var express = require("express"),
   mongoose = require("mongoose"),
   User = require("./models/user"),
   bodyParser = require("body-parser"),
-  cities = require("cities"); // lib to lookup cities by zip or lat-long
-app = express();
+  cities = require("cities"), // lib to lookup cities by zip or lat-long
+  colors = require("colors"), //library to use colors for text
+  app = express();
 
 const PORT = 3000;
 const connectionString =
@@ -20,6 +21,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //index route
 app.get("/", function(req, res) {
   res.render("index");
+});
+
+//default route
+app.get("*", function(req, res) {
+  res.render("/index");
 });
 
 //handle new user requests
@@ -44,13 +50,12 @@ app.post("/register", function(req, res) {
       } else {
         res.redirect("index");
       }
-    }
-  );
-});
+    },
 
-//default route
-app.get("*", function(req, res) {
-  res.render("/index");
+  colors.setTheme({
+    error: red,
+    warning: yellow
+  });
 });
 
 //listen
