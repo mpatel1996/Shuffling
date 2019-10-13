@@ -1,0 +1,13 @@
+<% include partials/_header %>
+
+<h2>User Decks</h2>
+
+<div class="container-fluid">
+    <h3><%-cards[0].deck_name%></h3>
+    <%for (let i = 0; i < cards[0].cards.length; i++) {%>
+    <img src="<%-cards[0].cards[i].imageUrl%>" alt="">
+    <%}%>
+</div>
+
+
+<% include partials/_footer %>

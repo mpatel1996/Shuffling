@@ -21,7 +21,9 @@
     "colors": "^1.4.0",
     "ejs": "^2.7.1",
     "express": "^4.17.1",
-    "mongoose": "^5.7.1"
+    "mongoose": "^5.7.1",
+    "mtgsdk": "^0.4.3",
+    "twitter": "^1.7.1"
   },
   "devDependencies": {},
   "description": ""
