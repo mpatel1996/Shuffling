@@ -16,6 +16,11 @@ app.set("view engine", "ejs");
 //use body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//TODO: problem*******************************************************************************************************************************
+app.use(express.static(__dirname + "/public"));
+app.use("/static", express.static("public"));
+//TODO: problem*******************************************************************************************************************************
+
 //-----------------------------------------//
 //        MongoDB Atlas CONNECTION         //
 //-----------------------------------------//
@@ -28,6 +33,13 @@ mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: 
 //-----------------------------------------//
 //                ROUTES                   //
 //-----------------------------------------//
+
+//TODO: problem*******************************************************************************************************************************
+app.get("/public/css/main.css", (req, res) => {
+  res.send("/public/css/main.css");
+});
+//TODO: problem*******************************************************************************************************************************
+
 //index routes
 app.get("/", function(req, res) {
   res.render("index");
@@ -98,7 +110,7 @@ app.get("/userDeck", function(req, res) {
 //-----------------------------------------//
 //                LISTEN                   //
 //-----------------------------------------//
-const PORT = 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, function(res, req) {
   console.log("Server Started on " + PORT);
 });
