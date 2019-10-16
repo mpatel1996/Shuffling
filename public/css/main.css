@@ -1,10 +1,54 @@
-body {
-  background-color: yellow;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-#chat-box-container {
-  width: 20vw;
-  border: 2px solid black;
+div.chat-box-container {
+  border: 3px solid black;
+  border-radius: 50px;
+  height: 50px;
+  width: 50px;
+}
+
+nav {
+  z-index: 10;
+  background-color: orange;
+}
+
+div.content-container {
+  margin: 15vh auto 0 auto;
+}
+div.content-container .deck-card-container {
+  height: 350px;
+  width: 300px;
+  background-color: gainsboro;
+}
+div.content-container .deck-card-container .img-prev-container {
+  position: relative;
+}
+div.content-container .deck-card-container .img-prev-container .img-prev {
+  position: absolute;
+  top: 10px;
+  width: 40%;
+}
+div.content-container .deck-card-container .img-prev-container :nth-child(1) {
+  transform: rotate(-5deg);
+}
+div.content-container .deck-card-container .img-prev-container :nth-child(2) {
+  transform: rotate(15deg);
+  top: 30px;
+  left: 40px;
+}
+div.content-container .deck-card-container .img-prev-container :nth-child(3) {
+  transform: rotate(35deg);
+  border: 2px solid green;
+  top: 50px;
+  left: 55px;
+}
+div.content-container .deck-card-container .deck-prop-container {
+  color: black;
+  position: relative;
+  top: 70%;
 }
 
 /*# sourceMappingURL=main.css.map */

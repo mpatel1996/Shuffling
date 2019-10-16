@@ -16,10 +16,13 @@ app.set("view engine", "ejs");
 //use body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//TODO: problem*******************************************************************************************************************************
+//serve public assets
 app.use(express.static(__dirname + "/public"));
-app.use("/static", express.static("public"));
-//TODO: problem*******************************************************************************************************************************
+
+//-----------------------------------------//
+//                  TEMP                   //
+//-----------------------------------------//
+var fs = require("fs");
 
 //-----------------------------------------//
 //        MongoDB Atlas CONNECTION         //
@@ -33,12 +36,6 @@ mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: 
 //-----------------------------------------//
 //                ROUTES                   //
 //-----------------------------------------//
-
-//TODO: problem*******************************************************************************************************************************
-app.get("/public/css/main.css", (req, res) => {
-  res.send("/public/css/main.css");
-});
-//TODO: problem*******************************************************************************************************************************
 
 //index routes
 app.get("/", function(req, res) {
@@ -99,18 +96,21 @@ app.post("/getCards", (req, res) => {
 });
 
 //userCards route
-var fs = require("fs");
-
+var data = fs.readFileSync("./test/data.json");
+var decks = JSON.parse(data);
 app.get("/userDeck", function(req, res) {
-  var data = fs.readFileSync("./test/data.json");
-  var cards = JSON.parse(data);
-  res.render("userDeck", { cards: cards });
+  res.render("userDeck", { decks: decks });
+});
+
+app.get("/deck", function(req, res) {
+  res.render("deck", { decks: decks });
 });
 
 //-----------------------------------------//
 //                LISTEN                   //
 //-----------------------------------------//
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, function(res, req) {
   console.log("Server Started on " + PORT);
 });
+``;

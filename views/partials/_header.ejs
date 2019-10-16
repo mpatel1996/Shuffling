@@ -11,14 +11,18 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 
-  <!-- external css  -->
-  <link rel="stylesheet" type="application/octet-stream" href="/public/css/main.css">
+  <!-- lightbox css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
+
+  <!-- external css  : TODO: Not being loaded-->
+  <link rel="stylesheet" href="/css/main.css">
+
 </head>
 
 </html>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top w-100">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,4 +58,10 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
+
+    <!-- chat box container -->
+    <div class="m-3 bg-success chat-box-container">
+      <h6 class="text-white">chat</h6>
+    </div>
+    <!-- end chat box container -->
   </nav>

@@ -1,38 +1,36 @@
 <% include partials/_header %>
-<%var size = 18%>
-<div class="d-flex flex-row">
-    <div class="col-9" id="card-container">
-        <h4>Deck Name: <%=cards[0].deck_name%></h4>
-        <!-- TODO: number of cards selector -->
-        <div class="dropdown m-2">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <%size%> Cards
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item" type="button">8 Cards</button>
-                <button class="dropdown-item" type="button">10 Cards</button>
-                <button class="dropdown-item" type="button">20 Cards</button>
-            </div>
-        </div>
-        <!-- cards container -->
-        <div class="p-2 m-2 border border-primary rounded-lg overflow-auto" id="card-container" style="height:90vh">
-            <div class="d-flex flex-row justify-content-center flex-wrap">
-                <!-- loop through cards and display -->
-                <%for (let i = 0; i < size ; i++) {%>
-                <img class="p-2" src="<%-cards[0].cards[i].imageUrl%>" alt="">
+
+<!-- user-deck-container -->
+<div>
+    <div class="container col-11 mx-auto">
+        <div class="content-container">
+            <h4>Decks</h4>
+            <!-- card-container -->
+            <div class="decks-container d-flex flex-row flex-wrap ">
+                <!-- loop through cards and decks-->
+                <%for (let i = 0; i < 9 ; i++) {%>
+                <!-- container to hold deck -->
+                <a class="deck-card-container m-2 mx-auto rounded-lg" href="/deck">
+                    <div class="img-prev-container m-3 container">
+                        <img class="img-fluid img-prev" src="<%=decks[0].cards[i].imageUrl%>" alt="">
+                        <img class="img-fluid img-prev" src="<%=decks[0].cards[i+1].imageUrl%>" alt="">
+                        <img class="img-fluid img-prev" src="<%=decks[0].cards[i+2].imageUrl%>" alt="">
+                    </div>
+                    <!-- end img-prev-container -->
+                    <div class="deck-prop-container">
+                        <h5 class="m-2">Name:<%=decks[0].deck_name%></h5>
+                        <p class="m-2">Rarity:</p>
+                        <p class="m-2">Date Added:</p>
+                    </div>
+                    <!-- end deck-prop-container -->
+                </a>
+                <!-- end deck-card-container -->
                 <%}%>
             </div>
+            <!-- end deck-container -->
         </div>
-    </div>
-
-    <!-- chat box container -->
-    <div class="col-2 m-2 p-2" id="chat-box-container" style="position:fixed; height:90vh; right:2em; bottom:0">
-        <h4>Chat Box</h4>
-        <div class="p-2 h-75 rounded-lg border border-primary">
-            <div></div>
-        </div>
+        <!-- end card-container -->
     </div>
 </div>
-
+<!-- end user-deck-container -->
 <% include partials/_footer %>

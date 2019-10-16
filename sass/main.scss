@@ -1,5 +1,53 @@
-#chat-box-container {
-    width:20vw;
-    border:2px solid black;
+$text-color: black;
+
+* {
+  margin: 0;
+  padding: 0;
 }
-     
+div.chat-box-container {
+  border: 3px solid black;
+  border-radius: 50px;
+  height: 50px;
+  width: 50px;
+}
+
+nav {
+  z-index: 10;
+  background-color: orange;
+}
+
+div.content-container {
+  margin: 15vh auto 0 auto;
+  .deck-card-container {
+    height: 350px;
+    width: 300px;
+    background-color: gainsboro;
+    .img-prev-container {
+      position: relative;
+      .img-prev {
+        position: absolute;
+        top: 10px;
+        width: 40%;
+      }
+      :nth-child(1) {
+        transform: rotate(-5deg);
+      }
+      :nth-child(2) {
+        transform: rotate(15deg);
+        top: 30px;
+        left: 40px;
+      }
+      :nth-child(3) {
+        transform: rotate(35deg);
+        border: 2px solid green;
+        top: 50px;
+        left: 55px;
+      }
+    }
+    .deck-prop-container {
+      color: $text-color;
+      position: relative;
+      top: 70%;
+    }
+  }
+}
