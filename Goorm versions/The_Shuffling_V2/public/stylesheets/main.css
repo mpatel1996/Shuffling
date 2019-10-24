@@ -1,0 +1,116 @@
+#test{
+	background-color: blue;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* userDeck stlying */
+div.chat-box-container {
+  border: 3px solid black;
+  border-radius: 50px;
+  height: 50px;
+  width: 50px;
+}
+
+nav {
+  z-index: 10;
+  background-color: orange;
+}
+
+div.content-container {
+  margin: 8vh auto 0 auto;
+}
+div.content-container .deck-card-container {
+  min-height: 350px;
+  width: 300px;
+  min-width: 250px;
+  background-color: gainsboro;
+}
+div.content-container .deck-card-container .img-prev-container {
+  position: relative;
+}
+div.content-container .deck-card-container .img-prev-container .img-prev {
+  position: absolute;
+  top: 5px;
+  width: 40%;
+}
+div.content-container .deck-card-container .img-prev-container :nth-child(1) {
+  transform: rotate(-5deg);
+}
+div.content-container .deck-card-container .img-prev-container :nth-child(2) {
+  transform: rotate(15deg);
+  top: 25px;
+  left: 40px;
+}
+div.content-container .deck-card-container .img-prev-container :nth-child(3) {
+  transform: rotate(35deg);
+  border: 2px solid green;
+  top: 50px;
+  left: 55px;
+}
+div.content-container .deck-card-container .deck-prop-container {
+  color: black;
+  position: relative;
+  top: 70%;
+}
+
+/* end userDeck stlying */
+
+
+/* index css */
+
+.indexh1 {
+		align-items: center;
+		color:white;
+		display: flex;
+		justify-content: center;
+		/* transform-style: preserve 3D; */
+		perspective: 100px;
+}
+
+
+.indexh1::before {
+		background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.8)),
+		url("https://wallpaperplay.com/walls/full/d/f/5/211210.jpg")
+		content("");
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;	
+		z-index: -1;
+	}
+	
+	.indexh1::after {
+		background:F9FCFF;
+		content: "";
+		height: 40rem;
+		left: -5%;
+		position: absolute;
+			right: -5%;
+			left: 90%;
+		transform-origin: 0 0;
+		transform: rotateZ(-4deg);
+		z-index: 0;
+		
+	}
+	@-webkit-keyframes pop-in {
+		0% { 
+			opacity: 0;
+			transform: translate(-4rem)scale(.8);
+		}
+		100% {
+			opacity: 1;
+			transform: none;
+		}
+	}
+	
+	.animate-pop-in {
+		animation: pop-in 1s ease-out forwards;
+		
+	}
+
+

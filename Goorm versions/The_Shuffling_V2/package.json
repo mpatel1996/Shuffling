@@ -1,0 +1,25 @@
+{
+  "name": "the_shuffling",
+  "version": "1.0.0",
+  "description": "save collections of magic cards",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "mongoose": "^5.7.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^5.0.1",
+    "sass": "^1.23.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "sass": "sass --watch sass:public/stylesheets",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Branden Hitt, Kevin Ly, Mihir Patel, Jin Young You, John Escalona",
+  "license": "ISC"
+}
