@@ -37,7 +37,6 @@ router.post("/register", function(req, res) {
   });
 });
 
-
 // LOGIN ROUTES
 //render login form
 router.get("/login", function(req, res) {

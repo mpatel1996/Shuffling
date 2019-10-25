@@ -5,10 +5,12 @@
 //keep the order
 
 var mongoose = require("mongoose"),
+  db = require("./config/mongoDb_key"),
   flash = require("connect-flash"),
   passport = require("passport"),
   bodyParser = require("body-parser"),
   User = require("./models/user"),
+  Card = require("./models/card"),
   LocalStrategy = require("passport-local"),
   passportLocalMongoose = require("passport-local-mongoose"),
   express = require("express"),
@@ -16,10 +18,13 @@ var mongoose = require("mongoose"),
 
 //require routes
 var indexRoutes = require("./routes/index");
-var userDecksRoutes = require("./routes/userDecks");
+var dashboard = require("./routes/dashboard");
 
-//configure mongoose
-mongoose.connect("mongodb://localhost/the_shuffling", { useNewUrlParser: true, useUnifiedTopology: true });
+// //configure mongoose
+// mongoose.connect("mongodb://localhost/the_shuffling", { useNewUrlParser: true, useUnifiedTopology: true });
+
+// mongoDB Altas Connection
+mongoose.connect(db.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 //configre view engine
 app.set("view engine", "ejs");
@@ -63,9 +68,16 @@ app.use(function(req, res, next) {
   next();
 });
 
+// FOR TESTING PURPOSES ONLY //
+app.get("/getCards", (req, res) => {
+  res.send("");
+});
+
+// END FOR TESTING PURPOSES ONLY //
+
 //import routes
 app.use("/", indexRoutes);
-app.use("/userDecks", userDecksRoutes);
+app.use("/dashboard", dashboard);
 
 //Default Route   - sends to index page, keep this route last
 app.get("/*", function(req, res) {
