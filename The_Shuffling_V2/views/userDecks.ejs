@@ -1,36 +1,33 @@
 <% include partials/header %>
 
 <!-- user-deck-container -->
-<div>
-    <div class="container col-10">
-        <div class="container content-container">
-            <h4>Decks</h4>
-            <!-- card-container -->
-            <div class="container decks-container d-flex flex-row flex-wrap">
-                <!-- loop through cards and decks-->
-                <%for (let i = 0; i < 9 ; i++) {%>
-                <!-- container to hold deck -->
-                <a class="container deck-card-container m-2 rounded-lg" href="/userDecks/deck">
-                    <div class="img-prev-container m-3 container">
-                        <img class="img-fluid img-prev" src="<%=decks[0].cards[i].imageUrl%>" alt="">
-                        <img class="img-fluid img-prev" src="<%=decks[0].cards[i+1].imageUrl%>" alt="">
-                        <img class="img-fluid img-prev" src="<%=decks[0].cards[i+2].imageUrl%>" alt="">
-                    </div>
-                    <!-- end img-prev-container -->
-                    <div class="deck-prop-container">
-                        <h5 class="m-2">Name: <%=decks[0].deck_name%></h5>
-                        <p class="m-2">Rarity:</p>
-                        <p class="m-2">Date Added:</p>
-                    </div>
-                    <!-- end deck-prop-container -->
-                </a>
-                <!-- end deck-card-container -->
-                <%}%>
-            </div>
-            <!-- end deck-container -->
+<div class="container col-10">
+    <div class="container content-container">
+        <h4>Decks</h4>
+        <!-- card-container -->
+        <div class="container decks-container d-flex flex-row flex-wrap">
+            <!-- loop through cards and decks-->
+            <%for (let i = 0; i < 9 ; i++) {%>
+            <!-- container to hold deck -->
+            <a class="container deck-card-container m-2 rounded-lg" href="/userDecks/deck">
+                <div class="img-prev-container m-3 container">
+                    <img class="img-prev" src="<%=decks[0].cards[i].imageUrl%>" alt="">
+                    <img class="img-prev" src="<%=decks[0].cards[i+1].imageUrl%>" alt="">
+                    <img class="img-prev" src="<%=decks[0].cards[i+2].imageUrl%>" alt="">
+                </div>
+                <!-- end img-prev-container -->
+                <div class="deck-prop-container">
+                    <p class="mb-1"><%=decks[0].deck_name%></p>
+                    <p class="mb-1">Added on 10/10/1782</p>
+                </div>
+                <!-- end deck-prop-container -->
+            </a>
+            <!-- end deck-card-container -->
+            <%}%>
         </div>
-        <!-- end card-container -->
+         <!-- end deck-container -->
     </div>
+    <!-- end card-container -->
 </div>
 <!-- end user-deck-container -->
 

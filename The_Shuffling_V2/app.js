@@ -4,26 +4,27 @@
 //ide-run.goorm.io/workspace/The_Shuffling?language=us&theme=-dark#
 //keep the order
 
-var mongoose              = require("mongoose"),
-	flash				  = require("connect-flash"),
-	passport              = require("passport"),
-	bodyParser            = require("body-parser"),
-	User                  = require("./models/user"),
-	LocalStrategy         = require("passport-local"),
+var mongoose = require("mongoose"),
+	flash = require("connect-flash"),
+	passport = require("passport"),
+	bodyParser = require("body-parser"),
+	User = require("./models/user"),
+	LocalStrategy = require("passport-local"),
 	passportLocalMongoose = require("passport-local-mongoose"),
-	express               = require("express"),
-	app                   = express();
+	express = require("express"),
+	app = express();
 
 //require routes
-var indexRoutes       = require("./routes/index");
-var userDecksRoutes = require("./routes/userDecks");
+var indexRoutes = require("./routes/index");
+var dashboardRoutes = require("./routes/dashboard");
 
 //configure mongoose
-mongoose.connect("mongodb://localhost/the_shuffling", { useNewUrlParser: true, useUnifiedTopology:true });
+mongoose.connect("mongodb://localhost/the_shuffling", { useNewUrlParser: true, useUnifiedTopology: true });
 //mongoose.connect("mongodb+srv://bhitt:cs4800mongodb@theshuffling-rk1we.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology:true });
 
+
 //configre view engine
-app.set("view engine","ejs");
+app.set("view engine", "ejs");
 
 //pathing to correct public file
 app.use(express.static(__dirname + "/public"));
@@ -49,13 +50,13 @@ passport.deserializeUser(User.deserializeUser());
 app.use(express.static("public"));
 
 //parses info from the body of a page
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //initialize flash for flash messages
 app.use(flash());
 
 //middleware used in every route
-app.use(function(req, res, next){
+app.use((req, res, next) => {
 	res.locals.currentUser = req.user;
 	res.locals.error = req.flash("error");
 	res.locals.success = req.flash("success");
@@ -64,14 +65,15 @@ app.use(function(req, res, next){
 
 //import routes
 app.use("/", indexRoutes);
-app.use("/userDecks", userDecksRoutes);
+app.use("/dashboard", dashboardRoutes);
 
 //Default Route   - sends to index page, keep this route last
-app.get("/*", function(req, res){
+app.get("/*", (req, res) => {
 	res.redirect("/");
 });
 
 //listen or start server
-app.listen(3000, function(){
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
 	console.log("Server is listening on port 3000.....");
 });

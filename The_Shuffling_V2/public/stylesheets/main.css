@@ -5,60 +5,87 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+	background: #121212;
+	color: white;
+	box-sizing: border-box;
 }
 
 /* userDeck stlying */
-div.chat-box-container {
-  border: 3px solid black;
-  border-radius: 50px;
-  height: 50px;
-  width: 50px;
-}
 
-nav {
-  z-index: 10;
-  background-color: orange;
-}
 
-div.content-container {
-  margin: 8vh auto 0 auto;
-}
-div.content-container .deck-card-container {
-  min-height: 350px;
-  width: 300px;
-  min-width: 250px;
-  background-color: gainsboro;
-}
-div.content-container .deck-card-container .img-prev-container {
-  position: relative;
-}
-div.content-container .deck-card-container .img-prev-container .img-prev {
-  position: absolute;
-  top: 5px;
-  width: 40%;
-}
-div.content-container .deck-card-container .img-prev-container :nth-child(1) {
-  transform: rotate(-5deg);
-}
-div.content-container .deck-card-container .img-prev-container :nth-child(2) {
-  transform: rotate(15deg);
-  top: 25px;
-  left: 40px;
-}
-div.content-container .deck-card-container .img-prev-container :nth-child(3) {
-  transform: rotate(35deg);
-  border: 2px solid green;
-  top: 50px;
-  left: 55px;
-}
-div.content-container .deck-card-container .deck-prop-container {
-  color: black;
-  position: relative;
-  top: 70%;
-}
-
-/* end userDeck stlying */
-
+/* end userDeck stlying */ 
+  a:hover {
+	text-decoration: none;
+  }
+  
+  div.content-container {
+	margin-top: 5vh;
+  }
+  div.content-container .deck-card-container {
+	transition: all 0.3s ease-out;
+	height: 350px;
+	width: 280px;
+	min-width: 280px;
+	background-color: #1d1d1d;
+	border: 2px solid #121212;
+  }
+  div.content-container .deck-card-container:hover {
+	border: 2px solid white;
+	background: #363636;
+  }
+  div.content-container .deck-card-container .img-prev-container {
+	position: relative;
+  }
+  div.content-container .deck-card-container .img-prev-container .img-prev {
+	transition: all 0.3s ease-out;
+	width: 40%;
+	position: absolute;
+	left: 0px;
+	top: 5px;
+	border-radius: 5px;
+  }
+  div.content-container .deck-card-container .img-prev-container :nth-child(1) {
+	transition: all 0.3s ease-out;
+	transform: translate3d(0px, 0px, 0px);
+	z-index: 3;
+  }
+  div.content-container .deck-card-container .img-prev-container :nth-child(2) {
+	transition: all 0.3s ease-out;
+	transform: translate3d(60px, 10px, 0px);
+	z-index: 2;
+  }
+  div.content-container .deck-card-container .img-prev-container :nth-child(3) {
+	transition: all 0.3s ease-out;
+	transform: translate3d(120px, 20px, 0px);
+	z-index: 1;
+  }
+  div.content-container .deck-card-container .img-prev-container:hover :nth-child(1):hover {
+	transition: all 0.3s ease-out;
+	width: 45%;
+	z-index: 4;
+  }
+  div.content-container .deck-card-container .img-prev-container:hover :nth-child(2):hover {
+	transition: all 0.3s ease-out;
+	width: 45%;
+	z-index: 4;
+  }
+  div.content-container .deck-card-container .img-prev-container:hover :nth-child(3):hover {
+	transition: all 0.3s ease-out;
+	width: 45%;
+	z-index: 4;
+  }
+  div.content-container .deck-card-container .deck-prop-container {
+	color: white;
+	position: relative;
+	top: 75%;
+  }
+  
+  /*# sourceMappingURL=dev_temp.css.map */
+  
 
 /* index css */
 
