@@ -14,25 +14,36 @@ a:hover {
   text-decoration: none;
 }
 
-div.content-container {
-  margin-top: 5vh;
+nav {
+  width: 100vw;
 }
-div.content-container .deck-card-container {
+
+div.content-container {
+  margin-top: 2vh;
+}
+
+.group-container {
+  background: #363636;
+  height: 80vh;
+  border-radius: 20px;
+}
+
+.deck-card-container {
   transition: all 0.3s ease-out;
   height: 350px;
-  width: 280px;
-  min-width: 280px;
+  width: 250px;
+  min-width: 250px;
   background-color: #1d1d1d;
   border: 2px solid #121212;
 }
-div.content-container .deck-card-container:hover {
+.deck-card-container:hover {
   border: 2px solid white;
   background: #363636;
 }
-div.content-container .deck-card-container .img-prev-container {
+.deck-card-container .img-prev-container {
   position: relative;
 }
-div.content-container .deck-card-container .img-prev-container .img-prev {
+.deck-card-container .img-prev-container .img-prev {
   transition: all 0.3s ease-out;
   width: 45%;
   position: absolute;
@@ -40,37 +51,37 @@ div.content-container .deck-card-container .img-prev-container .img-prev {
   top: 5px;
   border-radius: 5px;
 }
-div.content-container .deck-card-container .img-prev-container :nth-child(1) {
+.deck-card-container .img-prev-container :nth-child(1) {
   transition: all 0.3s ease-out;
   transform: translate3d(0px, 0px, 0px);
   z-index: 3;
 }
-div.content-container .deck-card-container .img-prev-container :nth-child(2) {
+.deck-card-container .img-prev-container :nth-child(2) {
   transition: all 0.3s ease-out;
-  transform: translate3d(70px, 0px, 0px);
+  transform: translate3d(60px, 0px, 0px);
   z-index: 2;
 }
-div.content-container .deck-card-container .img-prev-container :nth-child(3) {
+.deck-card-container .img-prev-container :nth-child(3) {
   transition: all 0.3s ease-out;
-  transform: translate3d(140px, 0px, 0px);
+  transform: translate3d(120px, 0px, 0px);
   z-index: 1;
 }
-div.content-container .deck-card-container .img-prev-container:hover :nth-child(1):hover {
+.deck-card-container .img-prev-container:hover :nth-child(1):hover {
   transition: all 0.3s ease-out;
   width: 50%;
   z-index: 4;
 }
-div.content-container .deck-card-container .img-prev-container:hover :nth-child(2):hover {
+.deck-card-container .img-prev-container:hover :nth-child(2):hover {
   transition: all 0.3s ease-out;
   width: 50%;
   z-index: 4;
 }
-div.content-container .deck-card-container .img-prev-container:hover :nth-child(3):hover {
+.deck-card-container .img-prev-container:hover :nth-child(3):hover {
   transition: all 0.3s ease-out;
   width: 50%;
   z-index: 4;
 }
-div.content-container .deck-card-container .deck-prop-container {
+.deck-card-container .deck-prop-container {
   color: white;
   position: relative;
   top: 75%;

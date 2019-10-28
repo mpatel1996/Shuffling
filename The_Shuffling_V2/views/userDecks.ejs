@@ -1,15 +1,14 @@
 <% include partials/header %>
 
 <!-- user-deck-container -->
-<div class="container col-10">
-    <div class="container content-container">
+<div class="container">
         <h4>Decks</h4>
         <!-- card-container -->
-        <div class="container decks-container d-flex flex-row flex-wrap">
+        <div class="content-container container decks-container d-flex flex-row flex-wrap">
             <!-- loop through cards and decks-->
             <%for (let i = 0; i < 9 ; i++) {%>
             <!-- container to hold deck -->
-            <a class="container deck-card-container m-2 rounded-lg" href="/userDecks/deck">
+            <a class="deck-card-container mx-auto container m-2 rounded-lg" href="/userDecks/deck">
                 <div class="img-prev-container m-3 container">
                     <img class="img-prev" src="<%=decks[0].cards[i].imageUrl%>" alt="">
                     <img class="img-prev" src="<%=decks[0].cards[i+1].imageUrl%>" alt="">
@@ -25,9 +24,7 @@
             <!-- end deck-card-container -->
             <%}%>
         </div>
-         <!-- end deck-container -->
-    </div>
-    <!-- end card-container -->
+        <!-- end deck-container -->
 </div>
 <!-- end user-deck-container -->
 
