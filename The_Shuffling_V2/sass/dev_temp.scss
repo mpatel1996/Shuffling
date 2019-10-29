@@ -3,6 +3,7 @@ $text-color: white;
 $dark-bg: #121212;
 $primary-dark-container: #1d1d1d;
 $secondary-dark-container: #363636;
+$border-light:white;
 
 // mixins //
 @mixin easeOut() {
@@ -42,6 +43,23 @@ div.content-container {
   height: 80vh;
   border-radius:20px;
 }
+
+.search-results-container {
+  width:40%;
+  .card-in-list {
+    @include easeOut();
+    border-bottom:0.5px solid transparent;
+    border-top:0.5px solid transparent;
+    color: $text-color;
+    &:hover {
+      border-top:1px solid $border-light;
+      border-bottom:1px solid $border-light;
+      background:$secondary-dark-container;
+    }
+  }
+  
+}
+
 // user deck css //
   .deck-card-container {
     @include easeOut();

@@ -2,9 +2,20 @@
 
 <div class="container-fluid content-container">
     <h2 class="m-2">Welcome to your dashboard <%-userName%></h2>
-    <div class="group-container container col-10">
-        
-    </div>
+    <form action="/dashboard" method="POST">
+        <input type="text" name="searchkey" value="Legendary">
+        <button class="btn btn-success" type="submit" name="searchKey">Search</button>
+    </form>
+
+    <table class="container search-results-container w-25 h-75">
+        <tbody>
+            <%for (let i = 0; i < cards.length ; i++) {%>
+            <tr scope="row">
+                <td ><button class="btn card-in-list"><%=cards[i].name%> cmc: <%=cards[i].cmc%></button></td>
+            </tr>
+            <%}%>
+        </tbody>
+    </table>
 </div>
 
 <% include partials/footer %>
