@@ -1,0 +1,131 @@
+//  variables //
+$text-color: white;
+$dark-bg: #121212;
+$primary-dark-container: #1d1d1d;
+$secondary-dark-container: #363636;
+$border-light:white;
+
+// mixins //
+@mixin easeOut() {
+  transition: all 0.3s ease-out;
+}
+
+// tag css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: $dark-bg;
+  color: white;
+  box-sizing: border-box;
+}
+
+a {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+nav {
+  width:100vw;
+}
+
+div.content-container {
+  margin-top: 2vh;
+}
+
+// dashboard csss //
+.group-container {
+  background:$secondary-dark-container;
+  height: 80vh;
+  border-radius:20px;
+}
+
+.search-results-container {
+  width:40%;
+  .card-in-list {
+    @include easeOut();
+    border-bottom:0.5px solid transparent;
+    border-top:0.5px solid transparent;
+    color: $text-color;
+    &:hover {
+      border-top:1px solid $border-light;
+      border-bottom:1px solid $border-light;
+      background:$secondary-dark-container;
+    }
+  }
+  
+}
+
+// user deck css //
+  .deck-card-container {
+    @include easeOut();
+    height: 350px;
+    width: 250px;
+    min-width: 250px;
+    background-color: $primary-dark-container;
+    border: 2px solid $dark-bg;
+    &:hover {
+      border: 2px solid white;
+      background: $secondary-dark-container;
+    }
+    .img-prev-container {
+      position: relative;
+      .img-prev {
+        @include easeOut();
+        width: 45%;
+        position: absolute;
+        left: -20px;
+        top: 5px;
+        border-radius: 5px;
+      }
+      :nth-child(1) {
+        @include easeOut();
+        transform: translate3d(0px, 0px, 0px);
+        z-index: 3;
+      }
+      :nth-child(2) {
+        @include easeOut();
+        transform: translate3d(60px, 0px, 0px);
+        z-index: 2;
+      }
+      :nth-child(3) {
+        @include easeOut();
+        transform: translate3d(120px, 0px, 0px);
+        z-index: 1;
+      }
+
+      &:hover {
+        :nth-child(1) {
+          &:hover {
+            @include easeOut();
+            width: 50%;
+            z-index: 4;
+          }
+        }
+        :nth-child(2) {
+          &:hover {
+            @include easeOut();
+            width: 50%;
+            z-index: 4;
+          }
+        }
+        :nth-child(3) {
+          &:hover {
+            @include easeOut();
+            width: 50%;
+            z-index: 4;
+          }
+        }
+      }
+    }
+    .deck-prop-container {
+      color: $text-color;
+      position: relative;
+      top: 75%;
+    }
+  }
+
