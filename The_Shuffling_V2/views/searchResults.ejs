@@ -1,0 +1,47 @@
+<% include partials/header %>
+
+<h2 class="m-2">Search Results</h2>
+<div class="d-flex flex-wrap w-25">
+    <div class="d-flex justify-content-start m-2">
+        <ul class="list-group search-results-container w-25 h-75">
+            <%var beg = 0, end = beg + 10;%>
+            <%console.log(cards);%>
+            <%for (let i = beg; i < end ; i++) {%>
+            <li class="list-group-item card-in-list list-group-item-dark"><%=cards[i].name%>
+                cmc:<%=cards[i].cmc%></button>
+            </li>
+            <%}%>
+                </ul>
+    </div>
+        <ul class="m-2 pagination">
+                <li class="page-item" onclick="prev()">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+
+            <%for (let i = beg; i < cards.length/10 ; i++) {%>
+            <li class="page-item" onclick="page(5)"><a class="page-link"><%-i%></a></li>
+            <%}%>
+
+                <li class="page-item" onclick="next()">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+</div>
+
+<script>
+    function next() {
+        console.log("next");
+    }
+    function prev() {
+        console.log("prev");
+    }
+    function page(page) {
+        console.log(page);
+    }
+</script>
+
+<% include partials/footer %>

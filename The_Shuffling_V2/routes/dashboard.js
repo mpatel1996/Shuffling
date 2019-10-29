@@ -1,10 +1,10 @@
 // PACKAGES
 const express = require("express"),
-      router = express.Router(),
-      mtg = require("mtgsdk"),
-      Card = require("../models/card"),
-      mongoose = require("mongoose"),
-      db = require("../config/db_keys");
+  router = express.Router(),
+  mtg = require("mtgsdk"),
+  Card = require("../models/card"),
+  mongoose = require("mongoose"),
+  db = require("../config/db_keys");
 
 global.cards = {};
 
@@ -13,34 +13,41 @@ var fs = require("fs");
 var data = fs.readFileSync("./test/data.json");
 var decks = JSON.parse(data);
 // CONNECT TO MONGODB ATLAS //
-mongoose.connect(db.mongo_uri_users, { useNewUrlParser: true, useUnifiedTopology:true });
+mongoose.connect(db.mongo_uri_users, { useNewUrlParser: true, useUnifiedTopology: true });
 
-router.get("/userDecks", function (req, res) {
+router.get("/userDecks", function(req, res) {
   res.render("userDecks", { decks: decks });
 });
 
-router.get("/testCollection", (req, res) => {
-  res.render("testCollection");
-}).post("/testCollection", (req, res) => {
-  let query = req.body.searchkey;
-   mtg.card.where({ supertypes: query }).then(cards => {
-    console.log(cards);
+router
+  .get("/testCollection", (req, res) => {
+    res.render("testCollection");
+  })
+  .post("/testCollection", (req, res) => {
+    let query = req.body.searchkey;
+    mtg.card.where({ supertypes: query }).then(cards => {
+      console.log(cards[0].name);
+    });
   });
-})
 
-function searchCards(searchKey, res) {
-  mtg.card.where({ supertypes: searchKey})
-  .then(cards => {
-    var userName = "Fuh"
-    res.render("dashboard", {userName: userName , cards:cards});
+var userName = "Fuh";
+
+async function searchCards(key, res) {
+  let promise = mtg.card.where({ name: key }).then(cards => {
+    return cards;
   });
+  let cards = await promise;
+  res.render("searchResults", { cards: cards });
 }
-router.get("/", (req, res) => {
-  var userName = "Fuh"
-  res.render("dashboard",{userName: userName});
-}).post("/", (req, res, next) => {
-  searchCards(req.body.searchKey, res);
-})
+
+router
+  .get("/", (req, res) => {
+    res.render("dashboard", { userName: userName, cards: cards });
+  })
+  .post("/", (req, res) => {
+    console.log("key is " + req.body.searchKey);
+    searchCards(req.body.searchKey, res);
+  });
 
 module.exports = router;
 
