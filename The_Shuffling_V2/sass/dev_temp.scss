@@ -23,6 +23,7 @@ body {
 }
 
 a {
+  display:block;
   &:hover {
     text-decoration: none;
   }
@@ -37,36 +38,27 @@ div.content-container {
 }
 
 // dashboard css //
-.group-container {
-  background: $secondary-dark-container;
-  height: 80vh;
-  border-radius: 20px;
+
+// edit collection css //
+.input-group {
+  width:40%;
 }
 
-// search results css //
 .search-results-container {
-  width: 40%;
+  height:40vh;
   .list-group-item {
     background: $primary-dark-container;
   }
   .card-in-list {
     @include easeOut();
-    width: 400px;
     color: $text-color;
     border-radius: 0px;
-    border-top: 1px solid $secondary-dark-container;
-    border-bottom: 1px solid $secondary-dark-container;
     &:hover {
-      border-top: 1px solid $border-light;
-      border-bottom: 1px solid $border-light;
       background: $secondary-dark-container;
     }
   }
 }
 
-.page-item {
-  color: #000000;
-}
 // user deck css //
 .deck-card-container {
   @include easeOut();

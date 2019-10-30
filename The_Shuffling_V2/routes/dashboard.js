@@ -30,24 +30,40 @@ router
     });
   });
 
-var userName = "Fuh";
+const userName = "Fuh";
+let addedCards = [];
+global.searchedCards = [];
+
+router
+  .get("/", (req, res) => {
+  res.render("dashboard", {userName: userName});
+  })
+
+router
+    .get("/editCollection/addCard/:id", (req,res)=> {
+      console.log(req.param.id)
+      addedCards.push(searchedCards.filter((card)=> card.id == req.params.id));
+      res.render("editCollection", {cards: searchedCards, addedCards:addedCards})
+    })
+    .post("/editCollection/removeCard/:id", (req,res)=> {
+      addedCards = addedCards.filter((card) => card != req.params.id);
+      console.log(addedCards);
+      res.render("editCollection", {cards: searchedCards, addedCards:addedCards})
+    })
+    .post("/editCollection", (req, res) => {
+      console.log("Search for " + req.body.searchKey);
+      searchCards(req.body.searchKey, res);
+    });
 
 async function searchCards(key, res) {
   let promise = mtg.card.where({ name: key }).then(cards => {
     return cards;
   });
   let cards = await promise;
-  res.render("searchResults", { cards: cards });
+  searchedCards = cards;
+  res.render("editCollection", {cards: cards, addedCards:addedCards});
 }
 
-router
-  .get("/", (req, res) => {
-    res.render("dashboard", { userName: userName, cards: cards });
-  })
-  .post("/", (req, res) => {
-    console.log("key is " + req.body.searchKey);
-    searchCards(req.body.searchKey, res);
-  });
 
 module.exports = router;
 

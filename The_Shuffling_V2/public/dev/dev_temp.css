@@ -9,6 +9,9 @@ body {
   box-sizing: border-box;
 }
 
+a {
+  display: block;
+}
 a:hover {
   text-decoration: none;
 }
@@ -21,34 +24,23 @@ div.content-container {
   margin-top: 2vh;
 }
 
-.group-container {
-  background: #363636;
-  height: 80vh;
-  border-radius: 20px;
+.input-group {
+  width: 40%;
 }
 
 .search-results-container {
-  width: 40%;
+  height: 40vh;
 }
 .search-results-container .list-group-item {
   background: #1d1d1d;
 }
 .search-results-container .card-in-list {
   transition: all 0.3s ease-out;
-  width: 400px;
   color: white;
   border-radius: 0px;
-  border-top: 1px solid #363636;
-  border-bottom: 1px solid #363636;
 }
 .search-results-container .card-in-list:hover {
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
   background: #363636;
-}
-
-.page-item {
-  color: #000000;
 }
 
 .deck-card-container {

@@ -19,7 +19,7 @@ var indexRoutes = require("./routes/index");
 var dashboardRoutes = require("./routes/dashboard");
 
 //configure mongoose
-mongoose.connect("mongodb://localhost/the_shuffling", { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect("mongodb://localhost/the_shuffling", { useNewUrlParser: true, useUnifiedTopology: true });
 //mongoose.connect("mongodb+srv://bhitt:cs4800mongodb@theshuffling-rk1we.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology:true });
 
 

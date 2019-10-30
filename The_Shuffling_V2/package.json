@@ -15,7 +15,9 @@
 		"passport-local": "^1.0.0",
 		"passport-local-mongoose": "^5.0.1"
 	},
-	"devDependencies": {},
+	"devDependencies": {
+		"ejs-lint": "^0.3.0"
+	},
 	"scripts": {
 		"sass": "sass --watch sass:public/stylesheets",
 		"test": "echo \"Error: no test specified\" && exit 1"
