@@ -7,11 +7,11 @@
             <%var beg = 0, end = beg + 10;%>
             <%console.log(cards);%>
             <%for (let i = beg; i < end ; i++) {%>
-            <li class="list-group-item card-in-list list-group-item-dark"><%=cards[i].name%>
-                cmc:<%=cards[i].cmc%></button>
+            <li class="list-group-item card-in-list d-flex justify-content-between"><%=cards[i].name%>
+                cmc:<%=cards[i].cmc%><button class="btn btn-warning">+</button class="btn"></button>
             </li>
             <%}%>
-                </ul>
+        </ul>
     </div>
         <ul class="m-2 pagination">
                 <li class="page-item" onclick="prev()">
@@ -19,11 +19,9 @@
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-
             <%for (let i = beg; i < cards.length/10 ; i++) {%>
-            <li class="page-item" onclick="page(5)"><a class="page-link"><%-i%></a></li>
+            <li class="page-item" onclick="page(5)"><a class="page-link"><%-i+1%></a></li>
             <%}%>
-
                 <li class="page-item" onclick="next()">
                 <a class="page-link" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
@@ -41,6 +39,7 @@
     }
     function page(page) {
         console.log(page);
+
     }
 </script>
 

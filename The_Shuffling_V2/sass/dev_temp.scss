@@ -46,6 +46,9 @@ div.content-container {
 // search results css //
 .search-results-container {
   width: 40%;
+  .list-group-item {
+    background: $primary-dark-container;
+  }
   .card-in-list {
     @include easeOut();
     width: 400px;
@@ -61,6 +64,9 @@ div.content-container {
   }
 }
 
+.page-item {
+  color: #000000;
+}
 // user deck css //
 .deck-card-container {
   @include easeOut();

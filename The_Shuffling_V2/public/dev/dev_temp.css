@@ -30,6 +30,9 @@ div.content-container {
 .search-results-container {
   width: 40%;
 }
+.search-results-container .list-group-item {
+  background: #1d1d1d;
+}
 .search-results-container .card-in-list {
   transition: all 0.3s ease-out;
   width: 400px;
@@ -42,6 +45,10 @@ div.content-container {
   border-top: 1px solid white;
   border-bottom: 1px solid white;
   background: #363636;
+}
+
+.page-item {
+  color: #000000;
 }
 
 .deck-card-container {
