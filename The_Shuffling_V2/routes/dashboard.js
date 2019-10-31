@@ -43,28 +43,33 @@ router
   .post("/editCollection/addCards", (req, res, next) => {
     addCard(req.body.id);
   })
-  .delete("/editCollection/removeCards", (req, res, next) => {
+  .post("/editCollection/removeCards", (req, res, next) => {
+    console.log("Removing " + req.body.id);
     removeCard(req.body.id);
   });
 
 // FUNCTIONS : needs refactoring//
 async function addCard(id) {
+  // id.trim();
   let result = searchResults[0].find(card => {
-    return card.id.localeCompare(id) === 1;
+    console.log("card id:" + card.id);
+    console.log("id :" + id);
+    console.log(card);
+    //console.log(card.name + ":" + card.id + "===" + id);
+    return id.localeCompare(card.id) === 0; //TODO: something wrong with compare
   });
   addedCards.push(result);
-  console.log("added " + result.name);
-  document.location.reload();
 }
 
 async function removeCard(id) {
   addedCards = Array.from(
     addedCards.filter(card => {
+      //console.log(card.id.localeCompare(id));
       return card.id.localeCompare(id) !== 1;
     })
   );
-  console.log(addedCards);
-  document.location.reload();
+
+  console.log("Filtered Card set: " + addedCards);
 }
 
 async function searchCards(key, res) {
