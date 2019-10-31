@@ -13,7 +13,8 @@
 		"mtgsdk": "^0.4.3",
 		"passport": "^0.4.0",
 		"passport-local": "^1.0.0",
-		"passport-local-mongoose": "^5.0.1"
+		"passport-local-mongoose": "^5.0.1",
+		"querystring": "^0.2.0"
 	},
 	"devDependencies": {
 		"ejs-lint": "^0.3.0"

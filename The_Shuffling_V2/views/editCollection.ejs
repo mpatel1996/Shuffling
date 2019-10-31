@@ -1,10 +1,31 @@
 <% include partials/header %>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+
+    let tempCards = [];
+    async function handleAdd(event) {
+        let id = event.target.id;
+        await axios
+            .post("editCollection/addCards", { id: id })
+            .then(console.log("sent" + id))
+            .catch(err => console.log(err));
+    }
+
+    async function handleDelete(event) {
+        let id = event.target.id;
+        await axios
+            .delete("editCollection/removeCards", { id: id })
+            .then(console.log("sent " + id))
+            .catch(err => console.log(err));
+    }
+</script>
 
 <div class="container">
     <h2 class="m-2">Edit Collection</h2>
     <form class="mb-3 " action="/dashboard/editCollection" method="POST">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search Card's Name" aria-label="Search Criteria by Name" name="searchKey">
+            <input type="text" class="form-control" placeholder="Search Card's Name"
+                aria-label="Search Criteria by Name" name="searchKey">
             <div class="input-group-append" id="button-addon4">
                 <button class="text-white btn btn-outline-secondary" type="submit">Search</button>
             </div>
@@ -17,9 +38,11 @@
             <ul class="border border-white overflow-auto list-group search-results-container">
                 <%var beg = 0, end = cards.length;%>
                 <%for (let i = beg; i < end ; i++) {%>
-                <li class="w-100 list-group-item card-in-list d-flex justify-content-between"><%=cards[i].name%>
+                <li id="<%= cards[i].name %>" class="w-100 list-group-item card-in-list d-flex justify-content-between">
+                    <%= cards[i].name%>
                     <span class="card-attributes"> cmc: <%=cards[i].cmc%> Rarity: <%=cards[i].rarity%></span>
-                    <button class="btn btn-outline-warning"><a href="/dashboard/editCollection/addCard/<%=cards[i].id%>">+</a></button>
+                    <button id=" <%= cards[i].id %>" onclick=" handleAdd(event)"
+                        class="btn btn-outline-warning">+</button>
                 </li>
                 <%}%>
             </ul>
@@ -28,11 +51,13 @@
             <h4 class="m-2">Added Cards</h4>
             <ul class="border border-white overflow-auto list-group search-results-container">
                     <%var beg = 0, end = addedCards.length;%>
-                    <%for (let i = beg; i < end ; i++) {%>
-                    <li class="w-100 list-group-item card-in-list d-flex justify-content-between"><%=addedCards[i].name%>
-                        <span class="card-attributes"> cmc: <%=addedCards[i].cmc%> Rarity: <%=addedCards[i].rarity%></span>
-                        <button class="btn btn-outline-danger"><a href="/dashboard/editCollection/removeCard/<%=cards[i].id%>">-</a></button>
-                    </li>
+                <%for (let i = beg; i < end ; i++) {%>
+                <li id="<%= cards[i].name %>" class="w-100 list-group-item card-in-list d-flex justify-content-between">
+                    <%=addedCards[i].name%>
+                    <span class="card-attributes"> cmc: <%=addedCards[i].cmc%> Rarity: <%=addedCards[i].rarity%></span>
+                    <button id="<%= cards[i].id %>" class="btn btn-outline-danger"
+                        onclick="handleDelete(event)">-</button>
+                </li>
                 <%}%>
             </ul>
         </div>
