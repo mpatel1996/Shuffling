@@ -17,6 +17,7 @@ var mongoose = require("mongoose"),
 //require routes
 var indexRoutes = require("./routes/index");
 var dashboardRoutes = require("./routes/dashboard");
+var chatRoutes = require("./routes/chat_server");
 
 //configure mongoose
 //mongoose.connect("mongodb://localhost/the_shuffling", { useNewUrlParser: true, useUnifiedTopology: true });
@@ -74,7 +75,7 @@ app.get("/*", (req, res) => {
 });
 
 //listen or start server
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log("Server is listening on port " + port);
 });

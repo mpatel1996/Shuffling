@@ -5,7 +5,8 @@
 
     let tempCards = [];
     async function handleAdd(event) {
-        let id = event.target.id.trim();
+        let id = event.target.id;
+        id = id.trim();
         await axios
             .post("editCollection/addCards", { id: id })
             .then(location.reload())
@@ -13,10 +14,10 @@
     }
 
     async function handleDelete(event) {
-        let id = event.target.id.trim();
+        let id = event.target.id;
         await axios
             .post("editCollection/removeCards", { id: id })
-            .then(location.reload())
+            .then(console.log("sent " + id))
             .catch(err => console.log(err));
     }
 </script>
@@ -42,21 +43,20 @@
                 <li class="w-100 list-group-item card-in-list d-flex justify-content-between">
                     <%= cards[i].name%>
                     <span class="card-attributes"> cmc: <%=cards[i].cmc%> Rarity: <%=cards[i].rarity%></span>
-                    <button class="btn btn-outline-warning" id="<%=cards[i].id%>" onclick=" handleAdd(event)">+</button>
+                    <button class="btn btn-outline-warning" id=" <%= cards[i].id%>"
+                        onclick=" handleAdd(event)">+</button>
                 </li>
-                <%}%>
             </ul>
         </div>
-
         <div>
             <h4 class="m-2">Added Cards</h4>
             <ul class="border border-white overflow-auto list-group search-results-container">
-                    <%var beg = 0, end = addedCards.length;%>
+                <%var beg = 0, end = addedCards.length;%>
                 <%for (let i = beg; i < end ; i++) {%>
                 <li class="w-100 list-group-item card-in-list d-flex justify-content-between">
                     <%=addedCards[i].name%>
                     <span class="card-attributes"> cmc: <%=addedCards[i].cmc%> Rarity: <%=addedCards[i].rarity%></span>
-                    <button class="btn btn-outline-danger" id="<%=cards[i].id%>"
+                    <button class="btn btn-outline-danger" id="<%= cards[i].id %>"
                         onclick="handleDelete(event)">-</button>
                 </li>
                 <%}%>

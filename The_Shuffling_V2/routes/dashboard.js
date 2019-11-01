@@ -52,10 +52,6 @@ router
 async function addCard(id) {
   // id.trim();
   let result = searchResults[0].find(card => {
-    console.log("card id:" + card.id);
-    console.log("id :" + id);
-    console.log(card);
-    //console.log(card.name + ":" + card.id + "===" + id);
     return id.localeCompare(card.id) === 0; //TODO: something wrong with compare
   });
   addedCards.push(result);
@@ -64,11 +60,9 @@ async function addCard(id) {
 async function removeCard(id) {
   addedCards = Array.from(
     addedCards.filter(card => {
-      //console.log(card.id.localeCompare(id));
-      return card.id.localeCompare(id) !== 1;
+      return card.id.localeCompare(id) !== 0;
     })
   );
-
   console.log("Filtered Card set: " + addedCards);
 }
 
