@@ -19,7 +19,6 @@ $border-light: white;
 
 body {
   background: $dark-bg;
-  box-sizing: border-box;
 }
 
 a {
@@ -29,10 +28,6 @@ a {
   }
 }
 
-nav {
-  width: 100vw;
-}
-
 div.content-container {
   margin-top: 2vh;
 }
@@ -40,21 +35,19 @@ div.content-container {
 // dashboard css //
 
 // edit collection css //
-.input-group {
-  width:40%;
+.fixed-search-bar {
+  width:500px;
 }
-
-.search-results-container {
-  height:40vh;
-  .list-group-item {
-    background: $primary-dark-container;
-  }
+.table-section {
+  width:500px;
+}
+.card-list-container  {
+  width:500px;
+  height:500px;
   .card-in-list {
     @include easeOut();
-    color: $text-color;
-    border-radius: 0px;
     &:hover {
-      background: $secondary-dark-container;
+      background: $primary-dark-container;
     }
   }
 }

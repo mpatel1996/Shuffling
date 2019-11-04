@@ -1,11 +1,25 @@
 <% include partials/header %>
 
-<div class="container-fluid content-container">
-    <h2 class="m-2">Welcome to your dashboard <%-userName%></h2>
-    <form action="/dashboard/editCollection" method="POST">
-        <input class="m-2" type="text" placeholder="enter name" name="searchKey">
-        <button class="btn btn-success" type="submit">Search</button>
-    </form>
-</div>
+<!-- link to search cards -> edits cards page -->
+<form class="m-3 fixed-search-bar" action="/dashboard/populate" method="POST">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search Card's Name"
+            aria-label="Search Criteria by Name" name="searchKey">
+        <div class="input-group-append" id="button-addon4">
+            <button class="text-white btn btn-outline-secondary" type="submit">Add Cards To Database</button>
+        </div>
+    </div>
+</form>
+
+<!-- render available decks -->
+
+<!-- SHOW ALL CARDS -->
+<div class="m-3">
+    <h1>Your Collection</h1>
+ </div> <!-- END SHOW ALL CARDS -->
+
+
+<!-- link to edit cards page -->
+<a href="/dashboard/editCollection"><button class="m-3 btn btn-outline-warning" type="submit">Edit Collection</button></a>
 
 <% include partials/footer %>

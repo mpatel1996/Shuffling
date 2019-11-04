@@ -6,7 +6,6 @@
 
 body {
   background: #121212;
-  box-sizing: border-box;
 }
 
 a {
@@ -16,31 +15,27 @@ a:hover {
   text-decoration: none;
 }
 
-nav {
-  width: 100vw;
-}
-
 div.content-container {
   margin-top: 2vh;
 }
 
-.input-group {
-  width: 40%;
+.fixed-search-bar {
+  width: 500px;
 }
 
-.search-results-container {
-  height: 40vh;
+.table-section {
+  width: 500px;
 }
-.search-results-container .list-group-item {
-  background: #1d1d1d;
+
+.card-list-container {
+  width: 500px;
+  height: 500px;
 }
-.search-results-container .card-in-list {
+.card-list-container .card-in-list {
   transition: all 0.3s ease-out;
-  color: white;
-  border-radius: 0px;
 }
-.search-results-container .card-in-list:hover {
-  background: #363636;
+.card-list-container .card-in-list:hover {
+  background: #1d1d1d;
 }
 
 .deck-card-container {
