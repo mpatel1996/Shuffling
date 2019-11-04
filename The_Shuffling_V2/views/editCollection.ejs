@@ -11,9 +11,13 @@
             .post("editCollection/addCards", { id: id })
             .then((response) => {
                 card = response.data.card;
-
-                //create element
+                // add element to DOM
                 let tr = $("<tr></tr>").addClass("card-in-list").addClass(card.id);
+                let btn = $("<button></button>")
+                            .addClass("btn btn-outline-danger")
+                            .attr("id", card.id)
+                            .attr("onclick", "handleDelete(event)")
+                            .append("-");
                 $("<td></td>").append(card.name).appendTo(tr);
                 $("<td></td>").append(card.convertedManaCost).appendTo(tr);
                 $("<td></td>").append(card.rarity).appendTo(tr);
@@ -30,13 +34,18 @@
     }
 
     async function handleDelete(event) {
-        let id = event.target.id.trim();
-        $("." + id).remove();
-        await axios
-            .post("editCollection/removeCards", { id: id })
-            .then(console.log("Remove: " + id))
-            .catch(err => console.log(err));
+    let id = event.target.id.trim();
+
+    // remove element from DOM
+    $("." + id).remove();
+    await axios
+        .post("editCollection/removeCards", { id: id })
+        .then( () => { 
+            console.log("." + id);
+        } )
+        .catch(err => console.log(err));
     }
+
 </script>
 
 <!-- MAIN SECONDARY COTAINER -->
@@ -133,12 +142,12 @@
                 <table class="table table-dark">
                     <tbody id="added-cards">
                         <% for (let i = 0; i < addedCards.length; i++) { %>
-                        <tr class="card-in-list <%=addedCards[i].id%>">
-                            <td><%=addedCards[i].name%></td>
-                            <td><%=addedCards[i].manaCost%></td>
-                            <td><%=addedCards[i].rarity%></td>
-                            <td><button id=" <%=addedCards[i].id%>" class="btn btn-outline-warning">-</button></td>
-                        </tr>
+                            <tr class="<%=addedCards[i].id%>" class="card-in-list">
+                                <td><%=addedCards[i].name%></td>
+                                <td><%=addedCards[i].manaCost%></td>
+                                <td><%=addedCards[i].rarity%></td>
+                                <td><button id="<%=addedCards[i].id%>" class="btn btn-outline-warning" onclick="handleDelet(event)">-</button></td>
+                            </tr>
                         <% } %>
                     </tbody>
                 </table>

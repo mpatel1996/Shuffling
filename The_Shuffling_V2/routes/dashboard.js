@@ -94,23 +94,26 @@ router
     mtg.card.where({ supertypes: query }).then(cards => {});
   });
 
-// TEMPORARY ROUTE //
-router.post("/populate", (req, res) => {
-  mtg.card.where({ name: req.body.searchKey }).then(cards => {
-    cards.map(card => {
-      Card.create({
-        id: card.id,
-        name: card.name,
-        manaCost: card.cmc,
-        rarity: card.rarity,
-        imageUrl: card.imageUrl,
-        text: card.text
-      });
-    });
-  });
-  res.redirect("/dashboard");
-});
 
+  // TEMPORARY ROUTE(S) //
+  router.post("/populate", (req, res)=> {
+    mtg.card.where({ name: req.body.searchKey }).then(cards => {
+      cards.map((card)=> {
+        Card.create(
+          {
+            id: card.id,
+            name: card.name,
+            manaCost: card.cmc,
+            rarity: card.rarity,
+            imageUrl: card.imageUrl,
+            text: card.text
+          }
+        )
+      })
+    });
+    res.redirect("/dashboard");
+  });
+  
 // FUNCTIONS : NEEDS REFACTORING //
 
 async function removeCard(id) {
