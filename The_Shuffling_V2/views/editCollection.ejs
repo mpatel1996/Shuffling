@@ -9,35 +9,38 @@
         let card;
         await axios
             .post("editCollection/addCards", { id: id })
-            .then( (response) => {
+            .then((response) => {
                 card = response.data.card;
+
                 //create element
-                let tr = $("<tr><td></td></tr>").addClass("card-in-list");
-                let btn = $("<button></button>")
-                            .addClass("btn btn-outline-danger")
-                            .attr("id", card.id)
-                            .attr("onclick", "handleDelete(event)")
-                            .append("-");
+                let tr = $("<tr></tr>").addClass("card-in-list").addClass(card.id);
                 $("<td></td>").append(card.name).appendTo(tr);
                 $("<td></td>").append(card.convertedManaCost).appendTo(tr);
                 $("<td></td>").append(card.rarity).appendTo(tr);
+
+                let btn = $("<button></button>")
+                    .addClass("btn btn-outline-danger")
+                    .attr("id", card.id)
+                    .attr("onclick", "handleDelete(event)")
+                    .append("-");
                 $("<td></td>").append(btn).appendTo(tr);
-            $('#added-cards').append(tr);   
+                $('#added-cards').append(tr);
             })
             .catch(err => console.log(err));
     }
 
     async function handleDelete(event) {
-    let id = event.target.id.trim();
-    await axios
-        .post("editCollection/removeCards", { id: id })
-        .then(console.log("Remove: " + id))
-        .catch(err => console.log(err));
+        let id = event.target.id.trim();
+        $("." + id).remove();
+        await axios
+            .post("editCollection/removeCards", { id: id })
+            .then(console.log("Remove: " + id))
+            .catch(err => console.log(err));
     }
 </script>
 
 <!-- MAIN SECONDARY COTAINER -->
-<div class="container-fluid"> 
+<div class="container-fluid">
     <h2 class="m-2">Edit Collection</h2>
     <!-- SEARCH FORM -->
     <form class="mb-3 fixed-search-bar" action="/dashboard/editCollection/searchCards" method="POST">
@@ -48,39 +51,39 @@
                 <button class="text-white btn btn-outline-secondary" type="submit">Search</button>
             </div>
         </div>
-    </form> <!-- SEARCH FORM -->   
+    </form> <!-- SEARCH FORM -->
 
     <!-- SECONDARY COTAINER -->
     <div class="d-flex flex-row flex-wrap mx-auto">
         <!-- CURRENT COLLECTION -->
         <% if(currentCollection.length > 0) { %>
-            <div class="m-3">
-                <h3>Current Collection</h3>
-                <table class="table-section mb-0 table table-dark">
-                    <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Mana Cost</th>
-                            <th scope="col">Rarity</th>
-                        </tr>
-                    </thead>
-                </table>
-                <div class="mt-0 card-list-container overflow-auto">
-                    <table class="table table-dark">
+        <div class="m-3">
+            <h3>Current Collection</h3>
+            <table class="table-section mb-0 table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Mana Cost</th>
+                        <th scope="col">Rarity</th>
+                    </tr>
+                </thead>
+            </table>
+            <div class="mt-0 card-list-container overflow-auto">
+                <table class="table table-dark">
                     <tbody id="current-collection">
                         <% for (let i = 0; i < currentCollection.length; i++) { %>
-                            <tr class="card-in-list">
-                                <td><%=currentCollection[i].name%></td>
-                                <td><%=currentCollection[i].manaCost%></td>
-                                <td><%=currentCollection[i].rarity%></td>
-                                <td><button class="btn btn-outline-danger" onclick=handleDelete(event)>-</button></td>
-                            </tr>
+                        <tr class="card-in-list">
+                            <td><%=currentCollection[i].name%></td>
+                            <td><%=currentCollection[i].manaCost%></td>
+                            <td><%=currentCollection[i].rarity%></td>
+                            <td><button class="btn btn-outline-danger" onclick=handleDelete(event)>-</button></td>
+                        </tr>
                         <% } %>
                     </tbody>
                 </table>
             </div>
-        </div> <!-- END CURRENT COLLECTION --> 
-        <% } %> 
+        </div> <!-- END CURRENT COLLECTION -->
+        <% } %>
 
         <!-- SEARCH RESULTS -->
         <% if(searchResults.length > 0) { %>
@@ -97,51 +100,53 @@
             </table>
             <div class="mt-0 card-list-container overflow-auto">
                 <table class="table table-dark">
-                <tbody id="search-results">
-                    <% for (let i = 0; i < searchResults.length; i++) { %>
+                    <tbody id="search-results">
+                        <% for (let i = 0; i < searchResults.length; i++) { %>
                         <tr class="card-in-list">
                             <td><%=searchResults[i].name%></td>
                             <td><%=searchResults[i].manaCost%></td>
                             <td><%=searchResults[i].rarity%></td>
-                            <td><button id="<%=searchResults[i].id%>" class="btn btn-outline-warning" onclick=handleAdd(event)>+</button></td>
+                            <td><button id="<%=searchResults[i].id%>" class="btn btn-outline-warning"
+                                    onclick=handleAdd(event)>+</button></td>
                         </tr>
-                    <% } %>
+                        <% } %>
                     </tbody>
                 </table>
             </div>
         </div> <!-- END SEARCH RESULTS -->
-        <% } %> 
-        
+        <% } %>
+
+        <% if(addedCards.length > 0) { %>
         <!-- ADDED CARDS -->
         <div class="m-3">
             <h3>Added Cards</h3>
-                <table class="table-section mb-0 table table-dark">
-                    <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Mana Cost</th>
-                            <th scope="col">Rarity</th>
-                        </tr>
-                    </thead>
-                </table>
-                <div class="mt-0 card-list-container overflow-auto">
-                    <table class="table table-dark">
+            <table class="table-section mb-0 table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Mana Cost</th>
+                        <th scope="col">Rarity</th>
+                    </tr>
+                </thead>
+            </table>
+            <div class="mt-0 card-list-container overflow-auto">
+                <table class="table table-dark">
                     <tbody id="added-cards">
                         <% for (let i = 0; i < addedCards.length; i++) { %>
-                            <tr class="card-in-list">
-                                <td><%=addedCards[i].name%></td>
-                                <td><%=addedCards[i].manaCost%></td>
-                                <td><%=addedCards[i].rarity%></td>
-                                <td><button id="<%=addedCards[i].id%>" class="btn btn-outline-warning">-</button></td>
-                            </tr>
+                        <tr class="card-in-list <%=addedCards[i].id%>">
+                            <td><%=addedCards[i].name%></td>
+                            <td><%=addedCards[i].manaCost%></td>
+                            <td><%=addedCards[i].rarity%></td>
+                            <td><button id=" <%=addedCards[i].id%>" class="btn btn-outline-warning">-</button></td>
+                        </tr>
                         <% } %>
                     </tbody>
                 </table>
             </div>
         </div> <!-- END ADDED CARDS -->
+        <% } %>
 
-
-    </div> <!-- END SECONDARY COTAINER -->  
+    </div> <!-- END SECONDARY COTAINER -->
 </div> <!-- END MAIN SECONDARY COTAINER -->
 
 <% include partials/footer %>

@@ -8,14 +8,23 @@ const express = require("express"),
   db_keys = require("../config/db_keys");
 
 const userName = "Fuh";
-global.addedCards = [];
+global.addedCards = [
+  {
+    id: "7779910e-0785-5301-bc7d-f01e01cb85ae",
+    name: "Squeeze",
+    convertedManaCost: 4,
+    rarity: "Rare",
+    imageUrl: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=19685&type=card",
+    text: "Sorcery spells cost {3} more to cast."
+  }
+];
 global.searchResults = [];
 Card.find({}, (err, cards) => {
-  if(err) {
+  if (err) {
     console.log(err);
     res.status(500).send();
   } else {
-    global.currentCollection  = cards.slice();
+    global.currentCollection = cards.slice();
   }
 });
 
@@ -31,71 +40,76 @@ router
   .get("/", (req, res) => {
     //render available groupings
     searchResults = []; //initialize searchResults
-    global.addedCards = []; //initialize addedCards
+    addedCards = []; //initialize addedCards
     res.render("dashboard");
   })
-  .get("/allCards", (req,res) => {
-    Card.find( (err, cards) => {
-      if(err) {
+  .get("/allCards", (req, res) => {
+    Card.find((err, cards) => {
+      if (err) {
         console.log(err);
       } else {
         currentCollection = cards.slice();
-        res.render("dashboard", {cards:cards});
+        res.render("dashboard", { cards: cards });
       }
-    })
+    });
   })
   .get("/editCollection", (req, res, next) => {
-    res.render("editCollection", { currentCollection:currentCollection, searchResults: searchResults, addedCards: addedCards });
+    console.log(addedCards);
+    res.render("editCollection", {
+      currentCollection: currentCollection,
+      searchResults: searchResults,
+      addedCards: addedCards
+    });
   })
   .get("/userDecks", function(req, res) {
     res.render("userDecks", { decks: decks });
   })
   .get("/testCollection", (req, res) => {
     res.render("testCollection");
-  })
-
+  });
 
 // POST REQUESTS //
 router
-  .post("/testCollection", (req, res, next) => {
-    let query = req.body.searchkey;
-    mtg.card.where({ supertypes: query }).then(cards => {
-    });
-  })
   .post("/editCollection/searchCards", (req, res, next) => {
     searchCards(req.body.searchKey, res);
   })
   .post("/editCollection/addCards", (req, res, next) => {
     let id = req.body.id;
     let card = searchResults.find(card => {
-      return id.localeCompare(card.id) === 0; 
+      return id.localeCompare(card.id) === 0;
     });
     addedCards.push(card);
-    res.send({card:card});
+    res.send({ card: card }); //TODO: refactor? no need to send back. access card object from client
   })
   .post("/editCollection/removeCards", (req, res, next) => {
-    removeCard(req.body.id);
+    //removeCard(req.body.id);
+    let id = res.body.id;
+    addedCards = addedCards.filter(card => {
+      return id.localeCompare(card.id) !== 0;
+    })[0];
+    console.log("Update Added Cards = " + addedCards);
   })
+  .post("/testCollection", (req, res, next) => {
+    let query = req.body.searchkey;
+    mtg.card.where({ supertypes: query }).then(cards => {});
+  });
 
-
-  // TEMPORARY ROUTE //
-  router.post("/populate", (req, res)=> {
-    mtg.card.where({ name: req.body.searchKey }).then(cards => {
-      cards.map((card)=> {
-        Card.create(
-          {
-            id: card.id,
-            name: card.name,
-            manaCost: card.cmc,
-            rarity: card.rarity,
-            imageUrl: card.imageUrl,
-            text: card.text
-          }
-        )
-      })
+// TEMPORARY ROUTE //
+router.post("/populate", (req, res) => {
+  mtg.card.where({ name: req.body.searchKey }).then(cards => {
+    cards.map(card => {
+      Card.create({
+        id: card.id,
+        name: card.name,
+        manaCost: card.cmc,
+        rarity: card.rarity,
+        imageUrl: card.imageUrl,
+        text: card.text
+      });
     });
-    res.redirect("/dashboard");
-  })
+  });
+  res.redirect("/dashboard");
+});
 
 // FUNCTIONS : NEEDS REFACTORING //
 
@@ -110,14 +124,14 @@ async function searchCards(key, res) {
   searchResults = await promise;
   searchResults = searchResults.map(card => {
     return {
-      id:card.id,
-      name:card.name,
-      convertedManaCost:card.cmc,
-      rarity:card.rarity,
-      imageUrl:card.imageUrl,
-      text:card.text
-    }
-  })
+      id: card.id,
+      name: card.name,
+      convertedManaCost: card.cmc,
+      rarity: card.rarity,
+      imageUrl: card.imageUrl,
+      text: card.text
+    };
+  });
   res.redirect("/dashboard/editCollection");
 }
 
