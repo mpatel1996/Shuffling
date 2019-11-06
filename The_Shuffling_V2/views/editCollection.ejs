@@ -1,55 +1,8 @@
 <% include partials/header %>
-<%var addedCards = []%>
-
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-<script>
-    async function handleAdd(event) {
-        let id = event.target.id.trim();
-        let card;
-        await axios
-            .post("editCollection/addCards", { id: id })
-            .then((response) => {
-                card = response.data.card;
-                // add element to DOM
-                let tr = $("<tr></tr>").addClass("card-in-list").addClass(card.id);
-                let btn = $("<button></button>")
-                            .addClass("btn btn-outline-danger")
-                            .attr("id", card.id)
-                            .attr("onclick", "handleDelete(event)")
-                            .append("-");
-                $("<td></td>").append(card.name).appendTo(tr);
-                $("<td></td>").append(card.convertedManaCost).appendTo(tr);
-                $("<td></td>").append(card.rarity).appendTo(tr);
-
-                let btn = $("<button></button>")
-                    .addClass("btn btn-outline-danger")
-                    .attr("id", card.id)
-                    .attr("onclick", "handleDelete(event)")
-                    .append("-");
-                $("<td></td>").append(btn).appendTo(tr);
-                $('#added-cards').append(tr);
-            })
-            .catch(err => console.log(err));
-    }
-
-    async function handleDelete(event) {
-    let id = event.target.id.trim();
-
-    // remove element from DOM
-    $("." + id).remove();
-    await axios
-        .post("editCollection/removeCards", { id: id })
-        .then( () => { 
-            console.log("." + id);
-        } )
-        .catch(err => console.log(err));
-    }
-
-</script>
 
 <!-- MAIN SECONDARY COTAINER -->
 <div class="container-fluid">
+    
     <h2 class="m-2">Edit Collection</h2>
     <!-- SEARCH FORM -->
     <form class="mb-3 fixed-search-bar" action="/dashboard/editCollection/searchCards" method="POST">
@@ -62,12 +15,26 @@
         </div>
     </form> <!-- SEARCH FORM -->
 
-    <!-- SECONDARY COTAINER -->
     <div class="d-flex flex-row flex-wrap mx-auto">
-        <!-- CURRENT COLLECTION -->
-        <% if(currentCollection.length > 0) { %>
+        
+        <!-- USER GROUPS -->
+        <div class="m-3 group-list-container">
+            <div><h3>Groups</h3><button class="m-2 btn btn-sm btn-outline-warning"onclick="handleAddGroup()">Add Group</button></div>
+            <% if(groups.length > 0) { %>
+            <div class="d-flex flex-row flex-wrap justify-content-between">
+                        <% for (let i = 0; i < groups.length; i++) { %>
+                            <div class="m-1 p-2 bg-dark"><%=groups[i].deckName %><button class=" m-2 btn btn-sm btn-outline-warning" onclick=handleEdit(event)>edit</button></div>
+                        <% } %>
+                    </tbody>
+            <% } %>
+            </div>
+        </div> 
+
+
+        <!-- CURRENT COLLECTION : RENDER ONLY WHEN EACH GROUP IS SELECTED -->
+        <!-- <% if(currentCollection.length > 0) { %>
         <div class="m-3">
-            <h3>Current Collection</h3>
+            <div class="d-flex flex-row justify-content-between"><h3>Current Collection</h3><button class="m-2 btn btn-sm btn-outline-warning" onclick="handleAddGroup()">Add Group</button></div>
             <table class="table-section mb-0 table table-dark">
                 <thead>
                     <tr>
@@ -85,14 +52,14 @@
                             <td><%=currentCollection[i].name%></td>
                             <td><%=currentCollection[i].manaCost%></td>
                             <td><%=currentCollection[i].rarity%></td>
-                            <td><button class="btn btn-outline-danger" onclick=handleDelete(event)>-</button></td>
+                            <td><button class="btn btn-sm btn-outline-danger" onclick=handleDelete(event)>-</button></td>
                         </tr>
                         <% } %>
                     </tbody>
                 </table>
             </div>
-        </div> <!-- END CURRENT COLLECTION -->
-        <% } %>
+        </div> END CURRENT COLLECTION
+        <% } %>  -->
 
         <!-- SEARCH RESULTS -->
         <% if(searchResults.length > 0) { %>
@@ -115,7 +82,7 @@
                             <td><%=searchResults[i].name%></td>
                             <td><%=searchResults[i].manaCost%></td>
                             <td><%=searchResults[i].rarity%></td>
-                            <td><button id="<%=searchResults[i].id%>" class="btn btn-outline-warning"
+                            <td><button id="<%=searchResults[i].id%>" class="btn btn-sm btn-outline-warning"
                                     onclick=handleAdd(event)>+</button></td>
                         </tr>
                         <% } %>
@@ -125,10 +92,9 @@
         </div> <!-- END SEARCH RESULTS -->
         <% } %>
 
-        <% if(addedCards.length > 0) { %>
         <!-- ADDED CARDS -->
         <div class="m-3">
-            <h3>Added Cards</h3>
+            <h3>New Cards</h3>
             <table class="table-section mb-0 table table-dark">
                 <thead>
                     <tr>
@@ -141,21 +107,22 @@
             <div class="mt-0 card-list-container overflow-auto">
                 <table class="table table-dark">
                     <tbody id="added-cards">
+                        <% if(addedCards.length > 0) { %>
                         <% for (let i = 0; i < addedCards.length; i++) { %>
                             <tr class="<%=addedCards[i].id%>" class="card-in-list">
                                 <td><%=addedCards[i].name%></td>
                                 <td><%=addedCards[i].manaCost%></td>
                                 <td><%=addedCards[i].rarity%></td>
-                                <td><button id="<%=addedCards[i].id%>" class="btn btn-outline-warning" onclick="handleDelet(event)">-</button></td>
+                                <td><button id="<%=addedCards[i].id%>" class="btn btn-sm btn-outline-danger" onclick="handleDelete(event)">-</button></td>
                             </tr>
+                        <% } %>
                         <% } %>
                     </tbody>
                 </table>
             </div>
         </div> <!-- END ADDED CARDS -->
-        <% } %>
 
-    </div> <!-- END SECONDARY COTAINER -->
+    </div>
 </div> <!-- END MAIN SECONDARY COTAINER -->
 
 <% include partials/footer %>

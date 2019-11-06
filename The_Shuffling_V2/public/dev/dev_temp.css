@@ -20,7 +20,8 @@ div.content-container {
 }
 
 .fixed-search-bar {
-  width: 500px;
+  width: 50%;
+  min-width: 350px;
 }
 
 .table-section {
@@ -36,6 +37,10 @@ div.content-container {
 }
 .card-list-container .card-in-list:hover {
   background: #1d1d1d;
+}
+
+.group-list-container {
+  width: 340px;
 }
 
 .deck-card-container {

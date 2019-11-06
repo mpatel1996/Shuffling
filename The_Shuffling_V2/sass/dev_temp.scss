@@ -36,7 +36,8 @@ div.content-container {
 
 // edit collection css //
 .fixed-search-bar {
-  width:500px;
+  width:50%;
+  min-width:350px;
 }
 .table-section {
   width:500px;
@@ -50,6 +51,11 @@ div.content-container {
       background: $primary-dark-container;
     }
   }
+}
+
+
+.group-list-container {
+  width:340px;
 }
 
 // user deck css //
