@@ -6,3 +6,12 @@ async function handleEditCollection(event) {
     .then(console.log("Working!"))
     .catch(err => console.log(err));
 }
+
+async function handleAddCollection() {
+  await axios
+    .get("allCollections/editCollection/addNewCollection/new")
+    .then(() => {
+      console.log("Add group");
+    })
+    .catch(err => console.log(err));
+}

@@ -4,7 +4,11 @@
 
 <!-- MAIN SECONDARY COTAINER -->
 <div class="container">
-    <h2 class="ml-3">Edit Collection</h2>
+    <% if(collection.length != 0) { %>
+        <h2 class="ml-3">Edit Collection</h2>
+    <% } else { %>
+        <h2 class="ml-3">Create New Collection</h2>
+    <% } %>
     <!-- SEARCH FORM -->
     <form class="mb-3 col-3 fixed-search-bar" action="searchCards/" method="POST">
         <div class="input-group">
@@ -18,6 +22,7 @@
 
     <div class="d-flex flex-row flex-wrap mx-auto ">
         <!-- COLLECTION CARDS CONTAINER -->
+        <% if(collection.length != 0) { %>
         <div class="m-3 card-container">
             <h3><%=collection.name %></h3>
             <div class="table-container overflow-auto">
@@ -37,6 +42,7 @@
                 </table>
             </div>
         </div>
+        <% } %>
 
         <!-- SEARCH RESULTS -->
         <% if(searchResults.length > 0) { %>

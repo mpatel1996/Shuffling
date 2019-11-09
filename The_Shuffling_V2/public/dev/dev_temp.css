@@ -30,14 +30,6 @@ div.content-container {
   width: 1.5rem;
 }
 
-.group-list-container {
-  width: 370px;
-}
-.group-list-container .group-container {
-  height: 120px;
-  width: 160px;
-}
-
 .table-container {
   height: 50%;
   width: 320px;

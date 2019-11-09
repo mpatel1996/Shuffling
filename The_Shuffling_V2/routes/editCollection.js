@@ -522,34 +522,28 @@ var allCollections = [
 
 // GET REQUESTS //
 router
-.get("/", (req,res)=> {
-  console.log(req.body);
-  res.render("editCollection", {
-    collection: collection,
-    searchResults: searchResults,
-    newCards: newCards
-  });
-})
-.get("/:id", (req, res, next) => {
-  collectionId = req.params.id;
-  //allCollections = getTestDataAndParse();
-  // filter selected collection
-  collection = allCollections.find(c => collectionId.localeCompare(c._id) === 0); //middleware
-  //TODO: Search collections using id //middleware
-  res.render("editCollection", {
-    collection: collection,
-    searchResults: searchResults,
-    newCards: newCards
-  });
-})
-.get("*", (req,res) => {
-  res.redirect("/");
-})
+  .get("/", (req,res)=> {
+    res.render("editCollection", {
+      collection: collection,
+      searchResults: searchResults,
+      newCards: newCards
+    });
+  })
+  .get("/:id", (req, res, next) => {
+    collectionId = req.params.id;
+    // filter selected collection
+    if(collectionId.localeCompare("new") !== 0) {
+      collection = allCollections.find(c => collectionId.localeCompare(c._id) === 0); //middleware
+      //TODO: Search collections using id //middleware
+    } else {
+      collection = [];
+    }
+    res.redirect("/dashboard/allCollections/editCollection/");
+  })
+  .get("*", (req,res) => {
+    res.redirect("/dashboard/allCollections/editCollection/");
+  })
 
-
-.get("/addNewCollection", (req,res) => {
-  res.redirect("/dashboard/allCollections/editCollection/")
-})
 
 // POST REQUESTS //
 router
@@ -569,7 +563,6 @@ router
   })
   .post("/addCards", (req, res, next) => {
     let id = req.body.id;
-    console.log(id);
     let card = searchResults.find(card => {
       return id.localeCompare(card.id) === 0;
     });

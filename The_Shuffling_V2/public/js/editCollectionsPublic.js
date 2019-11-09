@@ -5,7 +5,6 @@ async function handleAdd(event) {
     .post("addCards/", { id: id })
     .then(response => {
       card = response.data.card;
-      console.log(card);
       // add element to DOM
       let tr = $("<tr></tr>")
         .addClass("card-in-list")
@@ -36,7 +35,6 @@ async function handleDelete(event) {
   let id = event.target.id.trim();
   // remove element from DOM
   $("." + event.target.id.trim()).remove();
-
   await axios
     .post("removeCards/", { id: id })
     .then(() => {
@@ -45,13 +43,5 @@ async function handleDelete(event) {
     .catch(err => console.log(err));
 }
 
-async function handleAddCollection() {
-  await axios
-    .post("addNewCollection/")
-    .then(() => {
-      console.log("Add group");
-    })
-    .catch(err => console.log(err));
-}
 
 
