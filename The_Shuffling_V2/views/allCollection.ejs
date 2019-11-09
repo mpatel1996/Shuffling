@@ -1,0 +1,25 @@
+<% include partials/header %>
+<script src="/js/allCollectionsPublic.js"></script>
+
+<!-- USER COLLECTIONS -->
+<div class="m-3">
+    <h3>Collection Groups</h3>
+    <div class="group-list-container overflow-auto h-50">
+        <% if(collections.length > 0) { %>
+        <div class="d-flex flex-row flex-wrap justify-content-between overflow-auto">
+            <% for (let i = 0; i < collections.length; i++) { %>
+            <!-- change name to id once collections from db are set up -->
+            <a href="allCollections/editCollection/<%=collections[i]._id%>">
+                <div class="btn btn-outline-success m-2 p-2 pb-5 bg-dark group-container">
+                    <%=collections[i].name%></div>
+            </a>
+            <% } %>
+        </div>
+        <% } %>
+        <div class="m-2 group-container btn btn-outline-secondary" onclick="handleAddCollection()"
+            title="Create a new group"><span class="align-middle" style="font-size:3.8em"
+                title="I am hovering over the text">+</span></div>
+    </div>
+</div>
+
+<% include partials/footer %>

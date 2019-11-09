@@ -22,7 +22,7 @@ body {
 }
 
 a {
-  display:block;
+  display: block;
   &:hover {
     text-decoration: none;
   }
@@ -32,19 +32,30 @@ div.content-container {
   margin-top: 2vh;
 }
 
-// dashboard css //
-
 // edit collection css //
 .fixed-search-bar {
-  width:50%;
-  min-width:350px;
+  min-width: 350px;
 }
-.table-section {
-  width:500px;
+
+.btn-round {
+  border-radius: 25px;
+  font-weight: bold;
+  padding: 0px;
+  width: 1.5rem;
 }
-.card-list-container  {
-  width:500px;
-  height:500px;
+
+.group-list-container {
+  width: 370px;
+  .group-container {
+    height:120px;;
+    width:160px;
+  }
+}
+
+.table-container {
+  height: 50%;
+  width: 320px;
+  max-width: 400px;
   .card-in-list {
     @include easeOut();
     &:hover {
@@ -53,10 +64,6 @@ div.content-container {
   }
 }
 
-
-.group-list-container {
-  width:340px;
-}
 
 // user deck css //
 .deck-card-container {

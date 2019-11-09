@@ -3,8 +3,8 @@
 <!-- link to search cards -> edits cards page -->
 <form class="m-3 fixed-search-bar" action="/dashboard/populate" method="POST">
     <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Card's Name"
-            aria-label="Search Criteria by Name" name="searchKey">
+        <input type="text" class="form-control" placeholder="Search Card's Name" aria-label="Search Criteria by Name"
+            name="searchKey">
         <div class="input-group-append" id="button-addon4">
             <button class="text-white btn btn-outline-secondary" type="submit">Add Cards To Database</button>
         </div>
@@ -18,10 +18,11 @@
 <!-- SHOW ALL CARDS -->
 <div class="m-3">
     <h1>My Collection</h1>
- </div> <!-- END SHOW ALL CARDS -->
+</div> <!-- END SHOW ALL CARDS -->
 
 
 <!-- link to edit cards page -->
-<a href="/dashboard/editCollection"><button class="m-3 btn btn-outline-warning" type="submit">Edit Collection</button></a>
+<a href="/dashboard/allCollections"><button class="m-3 btn btn-outline-warning" type="submit">Edit
+        Collection</button></a>
 
 <% include partials/footer %>

@@ -20,27 +20,34 @@ div.content-container {
 }
 
 .fixed-search-bar {
-  width: 50%;
   min-width: 350px;
 }
 
-.table-section {
-  width: 500px;
-}
-
-.card-list-container {
-  width: 500px;
-  height: 500px;
-}
-.card-list-container .card-in-list {
-  transition: all 0.3s ease-out;
-}
-.card-list-container .card-in-list:hover {
-  background: #1d1d1d;
+.btn-round {
+  border-radius: 25px;
+  font-weight: bold;
+  padding: 0px;
+  width: 1.5rem;
 }
 
 .group-list-container {
-  width: 340px;
+  width: 370px;
+}
+.group-list-container .group-container {
+  height: 120px;
+  width: 160px;
+}
+
+.table-container {
+  height: 50%;
+  width: 320px;
+  max-width: 400px;
+}
+.table-container .card-in-list {
+  transition: all 0.3s ease-out;
+}
+.table-container .card-in-list:hover {
+  background: #1d1d1d;
 }
 
 .deck-card-container {
