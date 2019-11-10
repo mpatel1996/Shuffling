@@ -1,17 +1,30 @@
 <% include partials/header %>
 
-<h1>
-	 Login
-</h1>
+<div class ="container-fluid">
+	<div class ="row card-body">
+	
+			<div class ="col-lg-4">
 
-<div class ="card-body">
-	<form action="/login" method="POST">
-		<input type="text" name="username" placeholder="username">
-		<input type="password" name="password" placeholder="password">
-		<button>
-			Login
-		</button>
-	</form>	
+
+			</div>		
+	
+			<div class ="col-lg-4">
+				<h1>
+					Sign into your account to view your collections
+				</h1>
+				<!-- 		google sign in button		 -->
+				<form method="GET" action="/auth/google">
+					<button type="submit" class="btn btn-success g-signin2">
+						Sign in with Google
+					</button>
+			
+				</form>
+			</div>
+	
+			<div class ="col-lg-4">
+				
+			</div>
+	
+	</div>
 </div>
-
 <% include partials/footer %>
