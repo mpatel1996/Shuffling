@@ -5,6 +5,8 @@ var express = require("express"),
 Card = require("../models/card");
 
 // local variables
+// test for empty collecyion
+//var = collections = [];
 var collections = [
   {
     _id: 1,

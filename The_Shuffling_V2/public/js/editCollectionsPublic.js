@@ -1,10 +1,12 @@
 async function handleAdd(event) {
+  if("<%newCards.length === 1 %>") {
+    location.reload();
+  }
   let id = event.target.id.trim();
-  let card;
   await axios
     .post("addCards/", { id: id })
     .then(response => {
-      card = response.data.card;
+      let card = response.data.card;
       // add element to DOM
       let tr = $("<tr></tr>")
         .addClass("card-in-list")
@@ -32,10 +34,14 @@ async function handleAdd(event) {
 }
 
 async function handleDelete(event) {
+  if("<%newCards.length === 0 %>") {
+    location.reload();
+  }
   let id = event.target.id.trim();
   // remove element from DOM
   $("." + event.target.id.trim()).remove();
-  await axios
+  // remove from server array
+  axios
     .post("removeCards/", { id: id })
     .then(() => {
       console.log("remove successful");
@@ -43,5 +49,28 @@ async function handleDelete(event) {
     .catch(err => console.log(err));
 }
 
+async function handleReset(event) {
+  let containerName = event.target.id.trim();
+  await axios
+    .post("reset/", {containerName:containerName})
+    .then(() => {
+      if("<%$(containerName).length  == 0%>") {
+        console.log("Reset Successfull");
+        location.reload();
+    }})
+    .catch((err) => console.log(err));
+}
 
+async function handleAcceptChanges() {
+  await axios
+    .post("addCardsToCollection/")
+    .then(() => {
+      alert("Success! Cards have been added!");
+    })
+    .catch(err => console.log(err))
+  location.reload();
+}
 
+function showHideLoader() {
+  $(".loader").addClass("show");
+}

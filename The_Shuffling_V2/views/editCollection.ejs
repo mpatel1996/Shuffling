@@ -2,74 +2,44 @@
 <!-- js for dashboard and edit collection -->
 <script type="text/javascript" src="/js/editCollectionsPublic.js"></script>
 
+</body>
 <!-- MAIN SECONDARY COTAINER -->
-<div class="container">
+<div class="loader">
+    <i id="loader-icon" class="fas fa-cog fa-spin fa-10x"></i>
+</div>
+
+<div class="container col-md-10 col-sm-3">
     <% if(collection.length != 0) { %>
         <h2 class="ml-3">Edit Collection</h2>
     <% } else { %>
         <h2 class="ml-3">Create New Collection</h2>
     <% } %>
     <!-- SEARCH FORM -->
-    <form class="mb-3 col-3 fixed-search-bar" action="searchCards/" method="POST">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search Card's Name"
-                aria-label="Search Criteria by Name" name="searchKey">
-            <div class="input-group-append" id="button-addon4">
-                <button class="text-white btn btn-outline-secondary" type="submit">Search</button>
+    <div class="d-flex">
+        <form class="mb-3 col-4 fixed-search-bar" action="searchCards/" method="POST">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search Card's Name"
+                    aria-label="Search Criteria by Name" name="searchKey">
+                <div class="input-group-append" id="button-addon4">
+                    <button class="text-white btn btn-outline-secondary" type="submit" onclick = showHideLoader()>Search</button>
+                </div>
             </div>
+        </form>
+        <div class="container">
+            <%if(newCards.length > 0) {%>
+                <button id="newCards" class="btn btn-outline-danger"
+                onclick=handleReset(event)>Start Over</button>
+            <% } %>
+            <button class="btn btn-outline-success"
+            onclick=handleAcceptChanges()>Done</button>
         </div>
-    </form>
+    </div>  
 
-    <div class="d-flex flex-row flex-wrap mx-auto ">
-        <!-- COLLECTION CARDS CONTAINER -->
-        <% if(collection.length != 0) { %>
-        <div class="m-3 card-container">
-            <h3><%=collection.name %></h3>
-            <div class="table-container overflow-auto">
-                <table class="table table-dark">
-                    <tbody id="collection">
-                        <% for (let i = 0; i < collection.cards.length; i++) { %>
-                        <tr class="card-in-list">
-                            <td><%=collection.cards[i].name%></td>
-                            <td><%=collection.cards[i].manaCost%></td>
-                            <td><%=collection.cards[i].rarity%></td>
-                            <td><button id="<%=collection.cards[i].id%>"
-                                    class=" btn btn-round btn-sm btn-outline-danger" onclick=handleDeleteFromCollection(event)>-</button>
-                            </td>
-                        </tr>
-                        <% } %>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <% } %>
-
-        <!-- SEARCH RESULTS -->
-        <% if(searchResults.length > 0) { %>
-        <div class="m-3 card-container">
-            <h3>Search results</h3>
-            <div class="table-container overflow-auto">
-                <table class="table table-dark">
-                    <tbody id="search-results">
-                        <% for (let i = 0; i < searchResults.length; i++) { %>
-                        <tr class="card-in-list">
-                            <td><%=searchResults[i].name%></td>
-                            <td><%=searchResults[i].convertedManaCost%></td>
-                            <td><%=searchResults[i].rarity%></td>
-                            <td><button id="<%=searchResults[i].id%>"
-                                    class=" btn btn-round btn-sm btn-outline-warning"
-                                    onclick=handleAdd(event)>+</button></td>
-                        </tr>
-                        <% } %>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <% } %>
-
+    <div class="d-flex flex-row flex-wrap">
         <!-- NEW CARDS -->
         <div class="m-3 card-container">
             <h3>New Cards</h3>
+            <%if(newCards.length > 0) {%>
             <div class="table-container overflow-auto">
                 <table class="table table-dark">
                     <tbody id="added-cards">
@@ -77,9 +47,9 @@
                         <tr class="card-in-list">
                             <% if(newCards.length > 0) { %>
                             <td><%=newCards[i].name%></td>
-                            <td><%=newCards[i].manaCost%></td>
+                            <td><%=newCards[i].convertedManaCost%></td>
                             <td><%=newCards[i].rarity%></td>
-                            <td><button id="<%=newCards[i].id%>" class="btn btn-round btn-sm btn-outline-danger"
+                            <td><button id="<%=newCards[i].id%>" class="btn btn-sm btn-outline-danger"
                                     onclick=handleDelete(event)>-</button></td>
                             <% } %>
                         </tr>
@@ -87,11 +57,60 @@
                     </tbody>
                 </table>
             </div>
-            <button id="newCards" class="btn btn-sm btn-outline-danger"
-                    onclick=handleReset(event)>Reset</button>
-            <button id="newCards" class="btn btn-sm btn-outline-success float-right"
-                    onclick=handleAcceptChanges(event)>Add</button>
+            <% } else { %>
+                <div class="card-container">
+                    <div class="table-container">
+                        <h5>Search and press the "+" sign to add cards.</h5>
+                    </div>
+                </div>
+            <% } %>
         </div>
+        <!-- SEARCH RESULTS -->
+        <% if(searchResults.length > 0) { %>
+            <div class="m-3 card-container">
+                <h3>Search results</h3>
+                <div class="table-container overflow-auto">
+                    <table class="table table-dark">
+                        <tbody id="search-results">
+                            <% for (let i = 0; i < searchResults.length; i++) { %>
+                            <tr class="card-in-list">
+                                <td><%=searchResults[i].name%></td>
+                                <td><%=searchResults[i].convertedManaCost%></td>
+                                <td><%=searchResults[i].rarity%></td>
+                                <td><button id="<%=searchResults[i].id%>"
+                                        class=" btn btn-sm btn-outline-warning"
+                                        onclick=handleAdd(event)>+</button></td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <% } %>
+            <!-- COLLECTION CARDS CONTAINER -->
+            <% if(collection.length != 0) { %>
+                <div class="m-3 card-container">
+                    <h3><%=collection.name %></h3>
+                    <div class="table-container overflow-auto">
+                        <table class="table table-dark">
+                            <tbody id="collection">
+                                <% if(collection.cards.length != 0) { %>
+                                <% for (let i = 0; i < collection.cards.length; i++) { %>
+                                <tr class="card-in-list">
+                                    <td><%=collection.cards[i].name%></td>
+                                    <td><%=collection.cards[i].convertedManaCost%></td>
+                                    <td><%=collection.cards[i].rarity%></td>
+                                    <td><button id="<%=collection.cards[i].id%>"
+                                            class=" btn btn-sm btn-outline-danger" onclick=handleDeleteFromCollection(event)>-</button>
+                                    </td>
+                                </tr>
+                                <% } %>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            <% } %>
     </div>
 
 </div> <!-- END MAIN SECONDARY COTAINER -->

@@ -3,25 +3,43 @@
 
 <!-- USER COLLECTIONS -->
 
-    <div class="container m-3">
-        <h3>All Collection</h3>
+    <div class="container-fluid">
+        <div class="container mx-auto">
             <% if(collections.length > 0) { %>
-            <div class="container col-4 d-flex flex-row flex-wrap overflow-auto">
-                <% for (let i = 0; i < collections.length; i++) { %>
-                <!-- change name to id once collections from db are set up -->
-                <a href="allCollections/editCollection/<%=collections[i]._id%>">
-                    <button class="btn btn-outline-success m-2 bg-dark group-container">
-                        <%=collections[i].name%></button>
-                </a>
-                <% } %>
-                <a href="allCollections/editCollection/new">
-                    <div class="m-2 container">
-                     <i class="fas fa-plus-circle" style="font-size:4.5rem"></i>
-                    </div>
-                </a>
+            <h1>All Collections</h1>
+                <div class="col-md-9 col-sm-10 d-flex flex-row flex-wrap overflow-auto">
+                    <% for (let i = 0; i < collections.length; i++) { %>
+                    <!-- change name to id once collections from db are set up -->
+                    <a href="allCollections/editCollection/<%=collections[i]._id%>">
+                        <div class="deck-card-container btn btn-outline-success m-2 bg-dark">
+                            <h4><%=collections[i].name%></h4>
+                            <div class="img-prev-container">
+                                <img class="img-prev" src="<%=collections[i].cards[0].imageUrl%>" alt="">
+                                <img class="img-prev" src="<%=collections[i].cards[1].imageUrl%>" alt="">
+                                <img class="img-prev" src="<%=collections[i].cards[2].imageUrl%>" alt="">
+                            </div>
+                        </div>
+                    </a>
+                    <% } %>
+                    <a href="allCollections/editCollection/new">
+                        <div  class="deck-card-container btn btn-outline-secondary m-2 bg-dark">
+                            <i class="mt-5 fas fa-plus-circle" style="font-size:6.8rem" title="Add new Collection"></i>
+                        </div>
+                    </a> 
+                </div>
+            <% } else { %>
+            <div class="container">
+                    <h3>You have nothing. Build one by pressing the big ass plus sign.</h3>
+                    <a href="allCollections/editCollection/new">
+                        <div  class="deck-card-container btn btn-outline-secondary m-2 bg-dark">
+                            <div class="mt-5 container-fluid" title="Add new Collection">
+                                <i class="fas fa-plus-circle" style="font-size:6.8rem"></i>
+                            </div>
+                        </div>
+                    </a> 
             </div>
             <% } %>
+        </div>
     </div>
-
 
 <% include partials/footer %>

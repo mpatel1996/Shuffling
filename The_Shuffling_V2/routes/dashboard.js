@@ -40,12 +40,6 @@ router
       }
     });
   })
-  .get("/userDecks", function(req, res) {
-    res.render("userDecks", { decks: decks });
-  })
-  .get("/testCollection", (req, res) => {
-    res.render("testCollection");
-  });
 
 // POST REQUESTS //
 router.post("/testCollection", (req, res, next) => {

@@ -3,11 +3,12 @@ $text-color: white;
 $dark-bg: #121212;
 $primary-dark-container: #1d1d1d;
 $secondary-dark-container: #363636;
+$loader-bg:#363636af;
 $border-light: white;
 
 // mixins //
 @mixin easeOut() {
-  transition: all 0.3s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 // tag css
@@ -28,26 +29,40 @@ a {
   }
 }
 
+
 div.content-container {
-  margin-top: 2vh;
+  margin-top: 3vh;
 }
 
-// edit collection css //
+// loader //
+.loader {
+  display:none;
+  z-index:10;
+  background: $loader-bg;
+  position:fixed;
+  top:0px;
+  height: 100%;
+  width: 100%;
+  #loader-icon {
+    color:rgb(236, 119, 22);
+    position:fixed;
+    top:40%;
+    left:40%;
+    z-index:10;
+  }
+}
+.show {
+  display:block;
+}
+
+// edit collection //
 .fixed-search-bar {
   min-width: 350px;
-}
-
-.btn-round {
-  border-radius: 25px;
-  font-weight: bold;
-  padding: 0px;
-  width: 1.5rem;
+  max-width: 500px;
 }
 
 .table-container {
-  height: 50%;
-  width: 320px;
-  max-width: 400px;
+  max-height: 500px;
   .card-in-list {
     @include easeOut();
     &:hover {
@@ -56,15 +71,14 @@ div.content-container {
   }
 }
 
-// user deck css //
 .deck-card-container {
   @include easeOut();
-  height: 350px;
+  height: 250px;
   width: 250px;
   min-width: 250px;
   background-color: $primary-dark-container;
   border: 2px solid $dark-bg;
-  &:hover {
+  &:hover { 
     border: 2px solid white;
     background: $secondary-dark-container;
   }
@@ -72,7 +86,7 @@ div.content-container {
     position: relative;
     .img-prev {
       @include easeOut();
-      width: 45%;
+      width: 35%;
       position: absolute;
       left: -20px;
       top: 5px;
@@ -80,41 +94,18 @@ div.content-container {
     }
     :nth-child(1) {
       @include easeOut();
-      transform: translate3d(0px, 0px, 0px);
+      transform: translate3d(30px, 0px, 0px);
       z-index: 3;
     }
     :nth-child(2) {
       @include easeOut();
-      transform: translate3d(60px, 0px, 0px);
+      transform: translate3d(90px, 0px, 0px);
       z-index: 2;
     }
     :nth-child(3) {
       @include easeOut();
-      transform: translate3d(120px, 0px, 0px);
+      transform: translate3d(150px, 0px, 0px);
       z-index: 1;
-    }
-    &:hover {
-      :nth-child(1) {
-        &:hover {
-          @include easeOut();
-          width: 50%;
-          z-index: 4;
-        }
-      }
-      :nth-child(2) {
-        &:hover {
-          @include easeOut();
-          width: 50%;
-          z-index: 4;
-        }
-      }
-      :nth-child(3) {
-        &:hover {
-          @include easeOut();
-          width: 50%;
-          z-index: 4;
-        }
-      }
     }
   }
   .deck-prop-container {

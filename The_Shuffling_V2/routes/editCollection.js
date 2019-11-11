@@ -530,6 +530,7 @@ router
     });
   })
   .get("/:id", (req, res, next) => {
+    //TODO: fetch all user collections from database
     collectionId = req.params.id;
     // filter selected collection
     if(collectionId.localeCompare("new") !== 0) {
@@ -540,13 +541,14 @@ router
     }
     res.redirect("/dashboard/allCollections/editCollection/");
   })
-  .get("*", (req,res) => {
+  .get("/*", (req,res) => {
     res.redirect("/dashboard/allCollections/editCollection/");
   })
 
 
 // POST REQUESTS //
 router
+  // SEARH CARDS FROM MTG
   .post("/searchCards", async (req, res, next) => {
     let data = await searchMtg(req.body.searchKey);
     searchResults = data.map(card => {
@@ -559,8 +561,9 @@ router
         text: card.text
       };
     });
-    res.redirect("/dashboard/allCollections/editCollection/");
+    res.redirect("editCollection/");
   })
+  // ADD CARDS TO NEWCARDS CONTAINER
   .post("/addCards", (req, res, next) => {
     let id = req.body.id;
     let card = searchResults.find(card => {
@@ -569,12 +572,38 @@ router
     newCards.push(card);
     res.send({ card: card });
   })
+  // REMOVE A CARD FROM NEWCARDS CONTAINER
   .post("/removeCards", (req, res, next) => {
     let id = req.body.id;
     newCards = newCards.filter(card => {
       return id.localeCompare(card.id) !== 0;
     });
-    res.redirect("/dashboard/allCollections/editCollection/");
+    res.redirect("/");
+  })
+  // RESET NEWCARDS CONTAINER
+  .post("/reset", (req, res, next) => {
+    let containerName = req.body.containerName;
+    console.log(containerName);
+    if(containerName == "newCards") {
+      newCards.length = 0;
+    } else if(containerName == "searchResults") {
+      searchResults.length = 0;
+      console.log(newCards);
+    }  else if(containerName == "collection") {
+      collection.length = 0;
+      console.log(newCards);
+    } else {
+      console.log("Error:Container to reset no found!");
+    }
+    res.redirect("/");
+  })
+  // ADD CARDS TO DATABASE
+  .post("/addCardsToCollection", (req,res) => {
+    for (let i = 0; i < newCards.length; i++) {
+      collection.cards.push(newCards[i]); //TODO: should add directly to database
+    } 
+    newCards.length = 0;
+    res.redirect("/");
   });
 
 // FUNCTIONS //
@@ -584,6 +613,7 @@ async function searchMtg(key, res) {
   });
   return data;
 }
+
 var cards;
 function getTestDataAndParse() {
   let allCollections = [];
