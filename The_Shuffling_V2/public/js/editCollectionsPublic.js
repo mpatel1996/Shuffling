@@ -1,7 +1,5 @@
+
 async function handleAdd(event) {
-  if("<%newCards.length === 1 %>") {
-    location.reload();
-  }
   let id = event.target.id.trim();
   await axios
     .post("addCards/", { id: id })
@@ -34,9 +32,6 @@ async function handleAdd(event) {
 }
 
 async function handleDelete(event) {
-  if("<%newCards.length === 0 %>") {
-    location.reload();
-  }
   let id = event.target.id.trim();
   // remove element from DOM
   $("." + event.target.id.trim()).remove();

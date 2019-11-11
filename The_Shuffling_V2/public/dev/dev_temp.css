@@ -19,6 +19,10 @@ div.content-container {
   margin-top: 3vh;
 }
 
+#new-card-message-container {
+  display: none;
+}
+
 .loader {
   display: none;
   z-index: 10;
@@ -40,9 +44,17 @@ div.content-container {
   display: block;
 }
 
+.hide {
+  display: none;
+}
+
 .fixed-search-bar {
   min-width: 350px;
   max-width: 500px;
+}
+
+.card-container {
+  width: 400px;
 }
 
 .table-container {

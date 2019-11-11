@@ -586,9 +586,7 @@ router
     console.log(containerName);
     if(containerName == "newCards") {
       newCards.length = 0;
-    } else if(containerName == "searchResults") {
       searchResults.length = 0;
-      console.log(newCards);
     }  else if(containerName == "collection") {
       collection.length = 0;
       console.log(newCards);

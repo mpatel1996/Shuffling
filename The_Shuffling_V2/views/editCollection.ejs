@@ -26,10 +26,8 @@
             </div>
         </form>
         <div class="container">
-            <%if(newCards.length > 0) {%>
-                <button id="newCards" class="btn btn-outline-danger"
-                onclick=handleReset(event)>Start Over</button>
-            <% } %>
+            <button id="newCards" class="btn btn-outline-danger"
+            onclick=handleReset(event)>Start Over</button>
             <button class="btn btn-outline-success"
             onclick=handleAcceptChanges()>Done</button>
         </div>
@@ -39,7 +37,6 @@
         <!-- NEW CARDS -->
         <div class="m-3 card-container">
             <h3>New Cards</h3>
-            <%if(newCards.length > 0) {%>
             <div class="table-container overflow-auto">
                 <table class="table table-dark">
                     <tbody id="added-cards">
@@ -57,18 +54,12 @@
                     </tbody>
                 </table>
             </div>
-            <% } else { %>
-                <div class="card-container">
-                    <div class="table-container">
-                        <h5>Search and press the "+" sign to add cards.</h5>
-                    </div>
-                </div>
-            <% } %>
         </div>
         <!-- SEARCH RESULTS -->
-        <% if(searchResults.length > 0) { %>
+
             <div class="m-3 card-container">
                 <h3>Search results</h3>
+                <% if(searchResults.length > 0) { %>
                 <div class="table-container overflow-auto">
                     <table class="table table-dark">
                         <tbody id="search-results">
@@ -85,8 +76,8 @@
                         </tbody>
                     </table>
                 </div>
+                <% } %>
             </div>
-            <% } %>
             <!-- COLLECTION CARDS CONTAINER -->
             <% if(collection.length != 0) { %>
                 <div class="m-3 card-container">
