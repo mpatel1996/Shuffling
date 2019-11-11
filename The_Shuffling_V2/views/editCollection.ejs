@@ -51,13 +51,14 @@
                                 title="<div class='conatiner-fluid d-block'>
                                         <h6><%=newCards[i].name%></h6>
                                         <img class='img-fluid bg-dark rounded' src='<%=newCards[i].imageUrl%>'>
+                                        <span><%=newCards[i].text%></span>
                                         </div>">
                                 <%=newCards[i].name%>
                             </td>
                             <td><%=newCards[i].convertedManaCost%></td>
                             <td><%=newCards[i].rarity%></td>
-                            <td><button id="<%=newCards[i].id%>" class="btn btn-sm btn-outline-danger"
-                                    onclick=handleDelete(event)>-</button></td>
+                            <td><button id="<%=newCards[i].id%>" class="fas fa-minus-circle btn btn-sm btn-outline-danger"
+                                    onclick=handleDelete(event)></button></td>
                             <% } %>
                         </tr>
                         <% } %>
@@ -65,6 +66,7 @@
                 </table>
             </div>
         </div>
+        
         <!-- SEARCH RESULTS -->
             <div class="m-3 card-container">
                 <h3>Search results</h3>
@@ -83,14 +85,15 @@
                                 title="<div class='conatiner-fluid d-block'>
                                         <h6><%=searchResults[i].name%></h6>
                                         <img class='img-fluid bg-dark rounded' src='<%=searchResults[i].imageUrl%>'>
+                                        <span><%=searchResults[i].text%></span>
                                         </div>">
                                     <%=searchResults[i].name%>
                                 </td>
                                 <td><%=searchResults[i].convertedManaCost%></td>
                                 <td><%=searchResults[i].rarity%></td>
-                                <td><button id="<%=searchResults[i].id%>"
+                                <td><button id="<%=searchResults[i].id%>" class="fas fa-plus-circle btn btn-sm btn-outline-warning"
                                         class=" btn btn-sm btn-outline-warning"
-                                        onclick=handleAdd(event)>+</button></td>
+                                        onclick=handleAdd(event)></button></td>
                             </tr>
                             <% } %>
                         </tbody>
@@ -98,6 +101,7 @@
                 </div>
                 <% } %>
             </div>
+            
         <!-- COLLECTION CARDS CONTAINER -->
         <% if(collection.length != 0) { %>
             <div class="m-3 card-container">
@@ -118,13 +122,14 @@
                                     title="<div class='conatiner-fluid d-block'>
                                             <h6><%=collection.cards[i].name%></h6>
                                             <img class='img-fluid bg-dark rounded' src='<%=collection.cards[i].imageUrl%>'>
+                                            <span><%=collection.cards[i].text%></span>
                                             </div>">
                                         <%=collection.cards[i].name%>
                                     </td>
                                 <td><%=collection.cards[i].convertedManaCost%></td>
                                 <td><%=collection.cards[i].rarity%></td>
                                 <td><button id="<%=collection.cards[i].id%>"
-                                            class=" btn btn-sm btn-outline-danger" onclick=handleDeleteFromCollection(event)>-</button>
+                                            class=" btn btn-sm btn-outline-danger fa fa-minus-circle" onclick=handleDeleteFromCollection(event)></button>
                                 </td>
                             </tr>
                             <% } %>
@@ -132,7 +137,7 @@
                         </tbody>
                     </table>
                 </div>
-               </div>
+            </div>
         <% } %>
     </div>
 </div> <!-- END MAIN SECONDARY COTAINER -->

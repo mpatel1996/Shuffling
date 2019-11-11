@@ -10,18 +10,18 @@ async function handleAdd(event) {
         .addClass(card.id);
       $("<td></td>")
         .append(card.name)
+        .attr("title", "Refresh page to see image.")
         .appendTo(tr);
       $("<td></td>")
-        .append(card.manaCost)
+        .append(card.convertedManaCost)
         .appendTo(tr);
       $("<td></td>")
         .append(card.rarity)
         .appendTo(tr);
       let btn = $("<button></button>")
-        .addClass("btn btn-sm btn-round btn-outline-danger")
+        .addClass("fas fa-minus-circle btn btn-sm btn-outline-danger")
         .attr("id", card.id)
-        .attr("onclick", "handleDelete(event)")
-        .append("-");
+        .attr("onclick", "handleDelete(event)");
       $("<td></td>")
         .append(btn)
         .appendTo(tr);
