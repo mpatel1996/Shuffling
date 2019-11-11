@@ -13,11 +13,6 @@ const allCollectionsRoutes = require("./allCollections");
 // set routes
 router.use("/allCollections", allCollectionsRoutes);
 
-// FOR READING TESTING DATA //
-var fs = require("fs");
-var data = fs.readFileSync("./temp/data.json");
-var decks = JSON.parse(data);
-
 // CONNECT TO MONGODB ATLAS //
 mongoose.connect(db_keys.mongo_uri_users, { useNewUrlParser: true, useUnifiedTopology: true });
 

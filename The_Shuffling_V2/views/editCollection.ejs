@@ -2,7 +2,7 @@
 <!-- js for dashboard and edit collection -->
 <script type="text/javascript" src="/js/editCollectionsPublic.js"></script>
 
-</body>
+
 <!-- MAIN SECONDARY COTAINER -->
 <div class="loader">
     <i id="loader-icon" class="fas fa-cog fa-spin fa-10x"></i>
@@ -41,9 +41,19 @@
                 <table class="table table-dark">
                     <tbody id="added-cards">
                         <% for (let i = 0; i < newCards.length; i++) { %>
-                        <tr class="card-in-list">
+                        <tr class="card-in-list <%=newCards[i].id%>">
                             <% if(newCards.length > 0) { %>
-                            <td><%=newCards[i].name%></td>
+                            <td container = "body"
+                                data-toggle="tooltip"
+                                data-html="true" 
+                                data-placement="left"
+                                fallback-placement="flip"
+                                title="<div class='conatiner-fluid d-block'>
+                                        <h6><%=newCards[i].name%></h6>
+                                        <img class='img-fluid bg-dark rounded' src='<%=newCards[i].imageUrl%>'>
+                                        </div>">
+                                <%=newCards[i].name%>
+                            </td>
                             <td><%=newCards[i].convertedManaCost%></td>
                             <td><%=newCards[i].rarity%></td>
                             <td><button id="<%=newCards[i].id%>" class="btn btn-sm btn-outline-danger"
@@ -56,7 +66,6 @@
             </div>
         </div>
         <!-- SEARCH RESULTS -->
-
             <div class="m-3 card-container">
                 <h3>Search results</h3>
                 <% if(searchResults.length > 0) { %>
@@ -65,7 +74,18 @@
                         <tbody id="search-results">
                             <% for (let i = 0; i < searchResults.length; i++) { %>
                             <tr class="card-in-list">
-                                <td><%=searchResults[i].name%></td>
+                                <td
+                                container="body"
+                                data-toggle="tooltip"
+                                data-html="true" 
+                                data-placement="left"
+                                fallback-placement="flip"
+                                title="<div class='conatiner-fluid d-block'>
+                                        <h6><%=searchResults[i].name%></h6>
+                                        <img class='img-fluid bg-dark rounded' src='<%=searchResults[i].imageUrl%>'>
+                                        </div>">
+                                    <%=searchResults[i].name%>
+                                </td>
                                 <td><%=searchResults[i].convertedManaCost%></td>
                                 <td><%=searchResults[i].rarity%></td>
                                 <td><button id="<%=searchResults[i].id%>"
@@ -78,33 +98,43 @@
                 </div>
                 <% } %>
             </div>
-            <!-- COLLECTION CARDS CONTAINER -->
-            <% if(collection.length != 0) { %>
-                <div class="m-3 card-container">
-                    <h3><%=collection.name %></h3>
-                    <div class="table-container overflow-auto">
-                        <table class="table table-dark">
-                            <tbody id="collection">
-                                <% if(collection.cards.length != 0) { %>
-                                <% for (let i = 0; i < collection.cards.length; i++) { %>
-                                <tr class="card-in-list">
-                                    <td><%=collection.cards[i].name%></td>
-                                    <td><%=collection.cards[i].convertedManaCost%></td>
-                                    <td><%=collection.cards[i].rarity%></td>
-                                    <td><button id="<%=collection.cards[i].id%>"
-                                            class=" btn btn-sm btn-outline-danger" onclick=handleDeleteFromCollection(event)>-</button>
+        <!-- COLLECTION CARDS CONTAINER -->
+        <% if(collection.length != 0) { %>
+            <div class="m-3 card-container">
+                <h3><%=collection.name %></h3>
+                <div class="table-container overflow-auto">
+                    <table class="table table-dark">
+                    
+                        <tbody id="collection">
+                            <% if(collection.cards.length != 0) { %>
+                            <% for (let i = 0; i < collection.cards.length; i++) { %>
+                            <tr class="card-in-list">
+                                <td
+                                    container = "body"
+                                    data-toggle="tooltip"
+                                    data-html="true" 
+                                    data-placement="left"
+                                    fallback-placement="flip"
+                                    title="<div class='conatiner-fluid d-block'>
+                                            <h6><%=collection.cards[i].name%></h6>
+                                            <img class='img-fluid bg-dark rounded' src='<%=collection.cards[i].imageUrl%>'>
+                                            </div>">
+                                        <%=collection.cards[i].name%>
                                     </td>
-                                </tr>
-                                <% } %>
-                                <% } %>
-                            </tbody>
-                        </table>
-                    </div>
+                                <td><%=collection.cards[i].convertedManaCost%></td>
+                                <td><%=collection.cards[i].rarity%></td>
+                                <td><button id="<%=collection.cards[i].id%>"
+                                            class=" btn btn-sm btn-outline-danger" onclick=handleDeleteFromCollection(event)>-</button>
+                                </td>
+                            </tr>
+                            <% } %>
+                            <% } %>
+                        </tbody>
+                    </table>
                 </div>
-            <% } %>
+               </div>
+        <% } %>
     </div>
-
 </div> <!-- END MAIN SECONDARY COTAINER -->
-
 
 <% include partials/footer %>

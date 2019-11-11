@@ -19,6 +19,16 @@ div.content-container {
   margin-top: 3vh;
 }
 
+.tooltip > .tooltip-inner {
+  background-color: #FFFFFF;
+  color: #000000;
+  border: 1px solid FFFFFF;
+}
+
+.tooltip-arrow {
+  border-right: 10px solid FFFFFF;
+}
+
 #new-card-message-container {
   display: none;
 }
@@ -46,6 +56,10 @@ div.content-container {
 
 .hide {
   display: none;
+}
+
+tr {
+  line-height: 1px;
 }
 
 .fixed-search-bar {

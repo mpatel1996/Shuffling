@@ -1,4 +1,3 @@
-
 async function handleAdd(event) {
   let id = event.target.id.trim();
   await axios
@@ -69,3 +68,9 @@ async function handleAcceptChanges() {
 function showHideLoader() {
   $(".loader").addClass("show");
 }
+
+$(document).ready( () => {
+  $(() => {
+      $('[data-toggle="tooltip"]').tooltip();
+  })
+})
