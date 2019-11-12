@@ -45,9 +45,6 @@ div.content-container {
 }
 
 // loader //
-#new-card-message-container {
-  display:none;
-}
 .loader {
   display:none;
   z-index:10;
@@ -72,9 +69,6 @@ div.content-container {
 }
 
 // edit collection //
-tr {
-  height: 0.5em;
-}
 .fixed-search-bar {
   min-width: 350px;
   max-width: 500px;

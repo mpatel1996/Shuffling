@@ -29,10 +29,6 @@ div.content-container {
   border-right: 10px solid FFFFFF;
 }
 
-#new-card-message-container {
-  display: none;
-}
-
 .loader {
   display: none;
   z-index: 10;
@@ -56,10 +52,6 @@ div.content-container {
 
 .hide {
   display: none;
-}
-
-tr {
-  height: 0.5em;
 }
 
 .fixed-search-bar {

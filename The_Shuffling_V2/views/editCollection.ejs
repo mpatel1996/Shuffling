@@ -103,7 +103,7 @@
             </div>
             
         <!-- COLLECTION CARDS CONTAINER -->
-        <% if(collection.length != 0) { %>
+        <% if(collection.length != 0 && collection[0].cards.length != 0) { %>
             <div class="m-3 card-container">
                 <h3><%=collection.name %></h3>
                 <div class="table-container overflow-auto">

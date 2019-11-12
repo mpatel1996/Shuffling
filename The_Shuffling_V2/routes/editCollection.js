@@ -33,7 +33,9 @@ router
       collection = allCollections.find(c => collectionId.localeCompare(c._id) === 0); //middleware
       //TODO: Search collections using id //middleware
     } else {
-      collection = [];
+      collection = [
+        {name:"New Collection", cards:[] }
+      ];
     }
     res.redirect("/dashboard/allCollections/editCollection/");
   })
@@ -94,7 +96,7 @@ router
   .post("/addCardsToCollection", (req,res) => {
     for (let i = 0; i < newCards.length; i++) {
       collection.cards.push(newCards[i]); //TODO: should add directly to database
-    } 
+    }
     newCards.length = 0;
     res.redirect("/");
   });
