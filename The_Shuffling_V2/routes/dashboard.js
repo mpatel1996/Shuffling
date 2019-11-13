@@ -8,9 +8,7 @@ const express = require("express"),
   db_keys = require("../config/db_keys");
 
 // ROUTES //
-// require routes
 const allCollectionsRoutes = require("./allCollections");
-// set routes
 router.use("/allCollections", allCollectionsRoutes);
 
 // CONNECT TO MONGODB ATLAS //

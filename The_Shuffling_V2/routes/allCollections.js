@@ -11,7 +11,9 @@ var collections = JSON.parse(data);
 
 // ROUTES //
 const editCollectionRoutes = require("./editCollection");
+const newCollectionRoutes = require("./newCollection");
 router.use("/editCollection", editCollectionRoutes);
+router.use("/newCollection", newCollectionRoutes);
 
 // GET //
 router.get("/", (req, res) => {

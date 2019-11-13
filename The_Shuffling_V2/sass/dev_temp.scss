@@ -68,14 +68,11 @@ div.content-container {
   display:none;
 }
 
-// edit collection //
-.fixed-search-bar {
-  min-width: 350px;
-  max-width: 500px;
-}
 .card-container {
-  width:400px;
+  height:500px;
+  background:$secondary-dark-container;
 }
+// edit collection //
 .table-container {
   max-height: 500px;
   .card-in-list {

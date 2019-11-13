@@ -2,19 +2,17 @@
 const express = require("express"),
   router = express.Router(),
   mtg = require("mtgsdk"),
-  fs = require('fs'),
-  Group = require("../models/card_group");
+  fs = require('fs');
 
 // Card Containers
-var newCards = [];
 var searchResults = [];
 var collectionId;
 var collection;
 
+
 // TEMP Collection //
 var data = fs.readFileSync("./temp/testCollection.json");
 var allCollections = JSON.parse(data);
-
 
 // GET REQUESTS //
 router
@@ -22,21 +20,14 @@ router
     res.render("editCollection", {
       collection: collection,
       searchResults: searchResults,
-      newCards: newCards
     });
   })
   .get("/:id", (req, res, next) => {
     //TODO: fetch all user collections from database
     collectionId = req.params.id;
     // filter selected collection
-    if(collectionId.localeCompare("new") !== 0) {
-      collection = allCollections.find(c => collectionId.localeCompare(c._id) === 0); //middleware
-      //TODO: Search collections using id //middleware
-    } else {
-      collection = [
-        {name:"New Collection", cards:[] }
-      ];
-    }
+    collection = allCollections.find(c => collectionId.localeCompare(c._id) === 0); //middleware
+    //TODO: Search collections using id //middleware
     res.redirect("/dashboard/allCollections/editCollection/");
   })
   .get("/*", (req,res) => {
@@ -66,46 +57,40 @@ router
     let card = searchResults.find(card => {
       return id.localeCompare(card.id) === 0;
     });
-    newCards.push(card);
+    collection.cards.push(card);
     res.send({ card: card });
   })
   // REMOVE A CARD FROM NEWCARDS CONTAINER
   .post("/removeCards", (req, res, next) => {
     let id = req.body.id;
-    newCards = newCards.filter(card => {
+    collection.cards = collection.cards.filter(card => {
       return id.localeCompare(card.id) !== 0;
     });
     res.redirect("/");
   })
   // RESET NEWCARDS CONTAINER
   .post("/reset", (req, res, next) => {
-    let containerName = req.body.containerName;
-    console.log(containerName);
-    if(containerName == "newCards") {
-      newCards.length = 0;
-      searchResults.length = 0;
-    }  else if(containerName == "collection") {
-      collection.length = 0;
-      console.log(newCards);
-    } else {
-      console.log("Error:Container to reset no found!");
-    }
+    //empty cards in collection
+    collection.cards.length = 0;
+    allCollections.filter(collection => {
+      collection.id !== collectionId
+    })
     res.redirect("/");
   })
-  // ADD CARDS TO DATABASE
+
+  // TODO: ADD CARDS TO DATABASE
   .post("/addCardsToCollection", (req,res) => {
-    for (let i = 0; i < newCards.length; i++) {
-      collection.cards.push(newCards[i]); //TODO: should add directly to database
-    }
-    newCards.length = 0;
     res.redirect("/");
   });
 
 // FUNCTIONS //
 async function searchMtg(key, res) {
-  let data = mtg.card.where({ name: key }).then(cards => {
-    return cards;
-  });
+  let data = mtg.card
+    .where({ name: key })
+    .then(cards => {
+      return cards;
+      })
+    .catch(err => console.log(err));
   return data;
 }
 

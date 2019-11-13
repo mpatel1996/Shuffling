@@ -6,11 +6,10 @@ async function handleAdd(event) {
       let card = response.data.card;
       // add element to DOM
       let tr = $("<tr></tr>")
-        .addClass("card-in-list")
+        .addClass("card-in-list bg-secondary")
         .addClass(card.id);
       $("<td></td>")
         .append(card.name)
-        .attr("title", "Refresh page to see image.")
         .appendTo(tr);
       $("<td></td>")
         .append(card.convertedManaCost)
@@ -25,7 +24,7 @@ async function handleAdd(event) {
       $("<td></td>")
         .append(btn)
         .appendTo(tr);
-      $("#added-cards").append(tr);
+      $("#collection").append(tr);
     })
     .catch(err => console.log(err));
 }
@@ -43,12 +42,11 @@ async function handleDelete(event) {
     .catch(err => console.log(err));
 }
 
-async function handleReset(event) {
-  let containerName = event.target.id.trim();
+async function handleReset() {
   await axios
-    .post("reset/", {containerName:containerName})
+    .post("reset/")
     .then(() => {
-      if("<%$(containerName).length  == 0%>") {
+      if("<%$(collection.cards).length  == 0%>") {
         console.log("Reset Successfull");
         location.reload();
     }})
@@ -58,9 +56,7 @@ async function handleReset(event) {
 async function handleAcceptChanges() {
   await axios
     .post("addCardsToCollection/")
-    .then(() => {
-      alert("Success! Cards have been added!");
-    })
+    .then(console.log("New collection saved."))
     .catch(err => console.log(err))
   location.reload();
 }

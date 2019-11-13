@@ -3,14 +3,14 @@
 
 <!-- USER COLLECTIONS -->
     <div class="container-fluid">
-        <div class="container mx-auto">
+        <div class="container">
             <% if(collections.length > 0) { %>
-            <h1>All Collections</h1>
-                <div class="col-md-9 col-sm-10 d-flex flex-row flex-wrap overflow-auto">
+            <h2>All Collections</h2>
+                <div class="d-flex flex-row flex-wrap overflow-auto justify-content-between">
                     <% for (let i = 0; i < collections.length; i++) { %>
                     <!-- change name to id once collections from db are set up -->
                     <a href="allCollections/editCollection/<%=collections[i]._id%>">
-                        <div class="deck-card-container btn btn-outline-success m-2 bg-dark">
+                        <div class="deck-card-container btn btn-outline-success m-2">
                             <h4><%=collections[i].name%></h4>
                             <div class="img-prev-container">
                                 <img class="img-prev" src="<%=collections[i].cards[0].imageUrl%>" alt="">
@@ -19,25 +19,46 @@
                             </div>
                         </div>
                     </a>
+
                     <% } %>
-                    <a href="allCollections/editCollection/new">
+                    <a href="allCollections/newCollection" data-toggle="modal" data-target="#enterCollectionNameModal" >
                         <div  class="deck-card-container btn btn-outline-secondary m-2 bg-dark">
-                            <i class="mt-5 fas fa-plus-circle" style="font-size:6.8rem" title="Add new Collection"></i>
+                            <i class="mt-5 fas fa-plus-circle" style="font-size:8rem" title="Add new Collection"></i>
                         </div>
-                    </a> 
-                </div>
+                    </a>            
             <% } else { %>
             <div class="container">
-                    <h3>You have nothing. Build one by pressing the big ass plus sign.</h3>
-                    <a href="allCollections/editCollection/new">
-                        <div  class="deck-card-container btn btn-outline-secondary m-2 bg-dark">
-                            <div class="mt-5 container-fluid" title="Add new Collection">
-                                <i class="fas fa-plus-circle" style="font-size:6.8rem"></i>
-                            </div>
+                <h3>You have nothing. Build one by pressing the big ass plus sign.</h3>
+                <a href="allCollections/newCollection">
+                    <div  class="deck-card-container btn btn-outline-secondary m-2 bg-dark">
+                        <div class="mt-5 container-fluid" title="Add new Collection">
+                            <i class="fas fa-plus-circle" style="font-size:8rem"></i>
                         </div>
-                    </a> 
+                    </div>
+                </a> 
+            </div>            
+            <% } %>             
+            
+            <!-- New Collection setup modal -->
+            <div class="modal fade" id="enterCollectionNameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content bg-dark">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Create New Collection</h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="false">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="allCollections/newCollection" method="POST">
+                            <input class="mb-2 form-control form-control-md" type="text" placeholder="Enter Collection Name" name="name">
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-outline-success">Accept</button>
+                        </form>
+                    </div>
+                    </div>
+                </div>
             </div>
-            <% } %>
         </div>
     </div>
 

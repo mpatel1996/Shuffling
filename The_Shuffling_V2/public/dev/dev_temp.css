@@ -54,13 +54,9 @@ div.content-container {
   display: none;
 }
 
-.fixed-search-bar {
-  min-width: 350px;
-  max-width: 500px;
-}
-
 .card-container {
-  width: 400px;
+  height: 500px;
+  background: #363636;
 }
 
 .table-container {
