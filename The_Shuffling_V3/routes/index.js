@@ -11,8 +11,8 @@ var express     = require("express"),
 //   credentials (in this case, an accessToken, refreshToken, and Google
 //   profile), and invoke a callback with a user object.
 passport.use(new GoogleStrategy({
-    clientID: '842580677978-a0b1fgdiqlbu7poq1jh4uo0nhdrt4ldb.apps.googleusercontent.com',
-    clientSecret: 'wpK6IIoCLWg48Sd6BhF0NpiP',
+    clientID: '',
+    clientSecret: '',
     callbackURL: "https://the-shuffling-aaimi.run.goorm.io/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
