@@ -1,0 +1,239 @@
+#test{
+	background-color: blue;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+	color:white;
+}
+
+html {
+	height:100%;
+}
+body {
+  background: #121212;
+}
+
+.content-container {
+	margin-top: 5vh;
+
+}
+
+#google-logo {
+	width:35px;
+}
+
+ul {
+	list-style-type:none;
+}
+/* dashboard, allCollections, editCollection */
+a {
+  display: block;
+}
+a:hover {
+  text-decoration: none;
+}
+
+div.content-container {
+  margin-top: 3vh;
+}
+
+.tooltip > .tooltip-inner {
+  background-color: #FFFFFF;
+  color: #000000;
+  border: 1px solid FFFFFF;
+}
+
+.tooltip-arrow {
+  border-right: 10px solid FFFFFF;
+}
+
+.loader {
+  display: none;
+  z-index: 10;
+  background: #363636af;
+  position: fixed;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+}
+.loader #loader-icon {
+  color: #ec7716;
+  position: fixed;
+  top: 40%;
+  left: 40%;
+  z-index: 10;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.card-container {
+  height: 500px;
+  background: #363636;
+}
+
+.table-container {
+  max-height: 500px;
+}
+.table-container .card-in-list {
+  transition: all 0.2s ease-out;
+}
+.table-container .card-in-list:hover {
+  background: #1d1d1d;
+}
+
+.deck-card-container {
+  transition: all 0.2s ease-out;
+  height: 250px;
+  width: 250px;
+  min-width: 250px;
+  background-color: #1d1d1d;
+  border: 2px solid #121212;
+}
+.deck-card-container:hover {
+  border: 2px solid white;
+  background: #363636;
+}
+.deck-card-container .img-prev-container {
+  position: relative;
+}
+.deck-card-container .img-prev-container .img-prev {
+  transition: all 0.2s ease-out;
+  width: 35%;
+  position: absolute;
+  left: -20px;
+  top: 5px;
+  border-radius: 5px;
+}
+.deck-card-container .img-prev-container :nth-child(1) {
+  transition: all 0.2s ease-out;
+  transform: translate3d(30px, 0px, 0px);
+  z-index: 3;
+}
+.deck-card-container .img-prev-container :nth-child(2) {
+  transition: all 0.2s ease-out;
+  transform: translate3d(90px, 0px, 0px);
+  z-index: 2;
+}
+.deck-card-container .img-prev-container :nth-child(3) {
+  transition: all 0.2s ease-out;
+  transform: translate3d(150px, 0px, 0px);
+  z-index: 1;
+}
+.deck-card-container .deck-prop-container {
+  color: white;
+  position: relative;
+  top: 75%;
+}
+
+/*# sourceMappingURL=dev_temp.css.map */
+
+
+
+/* index css */
+
+input[type=text] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 0;
+	display: inline-block;
+	border: 1px solid;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.indexh1 {
+	align-items: center;
+	color:white;
+	display: flex;
+	overflow: hidden;
+	position: relative;
+	justify-content: center;
+	transform-style: preserve-3d; 
+	perspective: 100px;
+}
+
+/* .indexh2 {
+	color:white;
+	display: flex;
+	overflow: hidden;
+	position: relative;
+	transform-style: preserve-3d; 
+	perspective: 100px;
+} */
+.indexh1:before {
+	background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0)),
+	url("https://wallpaperplay.com/walls/full/d/f/5/211210.jpg")
+	no-repeat bottom;
+	content("");
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;	
+	z-index: -1;
+}
+
+.indexh1::after {
+	background: F9FCFF;
+	transform: rotateZ(-4deg);
+	content: "";
+	height: 40rem;
+	left: -5%;
+	position: absolute;
+		right: -5%;
+		top: 90%;
+	transform-origin: 0 0;
+	z-index: 0;
+
+}
+
+.white {
+	color: white;
+}
+
+@-webkit-keyframes pop-in {
+	0% {
+		opacity: 0;
+		transform: translateY(-4rem)scale(0.8);
+	}
+	100% {
+
+	}
+}	
+
+.header-delay {
+	
+	animation-delay: 2s;
+}
+
+.animate-pop-in {	
+	animation: pop-in .6s ease-out forwards;
+
+}
+
+.index-background {
+	height:100vh;
+	background-image: url("https://wallpaperplay.com/walls/full/d/f/5/211210.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	/* 	later add the image locally to the server instead of linking to it	 */
+} 
+
+/* Login/Sign-in Page Style */ 
+
+#login-background {
+	color: gray;
+}
+
+#login-header {
+	color: white;
+}

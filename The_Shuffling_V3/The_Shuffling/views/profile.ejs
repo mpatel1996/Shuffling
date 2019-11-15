@@ -1,0 +1,16 @@
+<% include partials/header %>
+
+<div class="container content-container">
+	<div class="row">
+		<ul class="list-group">
+		  <li>
+			<h5>Username</h5>
+			  <span class="h4"><%= currentUser.username.substr(0, currentUser.username.indexOf("#")) %></span>
+			  <a class="d-inline ml-4" href="/profile/<%= currentUser._id %>/edit">Edit</a>
+		  </li>
+			<!-- 	 more li's will go here -->
+		</ul>	
+	</div>
+</div>
+
+<% include partials/footer %>
