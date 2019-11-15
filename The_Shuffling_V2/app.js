@@ -16,7 +16,7 @@ var mongoose = require("mongoose"),
 
 //require routes
 var indexRoutes = require("./routes/index");
-var dashboardRoutes = require("./routes/dashboard");
+var allCollectionsRoutes = require("./routes/allCollections");
 var chatRoutes = require("./routes/chat_server");
 
 //configure mongoose
@@ -67,7 +67,7 @@ app.use((req, res, next) => {
 
 //import routes
 app.use("/", indexRoutes);
-app.use("/dashboard", dashboardRoutes);
+app.use("/allCollections", allCollectionsRoutes);
 
 //Default Route   - sends to index page, keep this route last
 app.get("/*", (req, res) => {

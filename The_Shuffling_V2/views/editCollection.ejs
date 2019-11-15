@@ -15,124 +15,122 @@
                 <input type="text" class="form-control" placeholder="Search Card's Name"
                     aria-label="Search Criteria by Name" name="searchKey">
                 <div class="input-group-append" id="button-addon4">
-                    <button class="text-white btn btn-outline-secondary" type="submit" onclick = showHideLoader()>Search</button>
+                    <button class="text-white btn btn-outline-secondary" type="submit"
+                        onclick=showHideLoader()>Search</button>
                 </div>
             </div>
-            <button class="btn btn-outline-success" data-toggle="modal" data-target="#confirmCollectionModal">Accept</button>
-            <button class="btn btn-outline-danger"
-            title="Reset collection" data-toggle="modal" data-target="#confirmResetModal">Start Over</button>
+            <button class="btn btn-outline-success" data-toggle="modal"
+                data-target="#confirmCollectionModal">Accept</button>
+            <button class="btn btn-outline-danger" title="Reset collection" data-toggle="modal"
+                data-target="#confirmResetModal">Start Over</button>
         </form>
     </div>
 
-    <div class="d-flex flex-wrap justify-content-between mt-3">              
+    <div class="d-flex flex-wrap justify-content-between mt-3">
         <!-- COLLECTION CARDS CONTAINER -->
-            <div>
-                <% if(collection.length != 0) { %>
-                <h5>Collection Name: <%=collection.name %></h5>
-                <div class="table-container overflow-auto card-container">
-                    <table class="table table-dark">                  
-                        <tbody id="collection">
-                            <% for (let i = 0; i < collection.cards.length; i++) { %>
-                            <tr class="card-in-list <%=collection.cards[i].id%>">
-                                <td container = "body"
-                                    data-toggle="tooltip"
-                                    data-html="true" 
-                                    data-placement="left"
-                                    fallback-placement="flip"
-                                    title="<div class='conatiner-fluid d-block'>
+        <div>
+            <% if(collection.length != 0) { %>
+            <h5>Collection Name: <%=collection.name %></h5>
+            <div class="table-container overflow-auto card-container">
+                <table class="table table-dark">
+                    <tbody id="collection">
+                        <% for (let i = 0; i < collection.cards.length; i++) { %>
+                        <tr class="card-in-list <%=collection.cards[i].id%>">
+                            <td container="body" data-toggle="tooltip" data-html="true" data-placement="left"
+                                fallback-placement="flip" title="<div class='conatiner-fluid d-block'>
                                             <h6><%=collection.cards[i].name%></h6>
                                             <img class='img-fluid bg-dark rounded' src='<%=collection.cards[i].imageUrl%>'>
                                             <span><%=collection.cards[i].text%></span>
                                             </div>">
-                                        <%=collection.cards[i].name%>
-                                    </td>
-                                <td><%=collection.cards[i].convertedManaCost%></td>
-                                <td><%=collection.cards[i].rarity%></td>
-                                <td>
-                                    <button id="<%=collection.cards[i].id%>"
-                                            class="btn btn-sm btn-outline-danger fas fa-minus-circle" onclick=handleDelete(event)>
-                                    </button>
-                                </td>
-                            </tr>
-                            <% } %>
-                        </tbody>
-                    </table>
-                </div>
-                <% } %>  
+                                <%=collection.cards[i].name%>
+                            </td>
+                            <td><%=collection.cards[i].convertedManaCost%></td>
+                            <td><%=collection.cards[i].rarity%></td>
+                            <td>
+                                <button id="<%=collection.cards[i].id%>"
+                                    class="btn btn-sm btn-outline-danger fas fa-minus-circle"
+                                    onclick=handleDelete(event)>
+                                </button>
+                            </td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
             </div>
-      
+            <% } %>
+        </div>
+
         <!-- SEARCH RESULTS -->
         <div>
             <% if(searchResults.length > 0) { %>
-                <h5>Search results</h5>
-                <div class="table-container overflow-auto">
-                    <table class="table table-dark">
-                        <tbody id="search-results">
-                            <% for (let i = 0; i < searchResults.length; i++) { %>
-                            <tr class="card-in-list">
-                                <td
-                                container="body"
-                                data-toggle="tooltip"
-                                data-html="true" 
-                                data-placement="left"
-                                fallback-placement="flip"
-                                title="<div class='conatiner-fluid d-block'>
+            <h5>Search results</h5>
+            <div class="table-container overflow-auto">
+                <table class="table table-dark">
+                    <tbody id="search-results">
+                        <% for (let i = 0; i < searchResults.length; i++) { %>
+                        <tr class="card-in-list">
+                            <td container="body" data-toggle="tooltip" data-html="true" data-placement="left"
+                                fallback-placement="flip" title="<div class='conatiner-fluid d-block'>
                                         <h6><%=searchResults[i].name%></h6>
                                         <img class='img-fluid bg-dark rounded' src='<%=searchResults[i].imageUrl%>'>
                                         <span><%=searchResults[i].text%></span>
                                         </div>">
                                 <%=searchResults[i].name%>
-                                </td>
-                                <td><%=searchResults[i].convertedManaCost%></td>
-                                <td><%=searchResults[i].rarity%></td>
-                                <td>
-                                    <button id="<%=searchResults[i].id%>" class="btn btn-sm btn-outline-warning fas fa-plus-circle" 
-                                        onclick=handleAdd(event)>
-                                    </button>
-                                </td>
-                            </tr>
-                            <% } %>
-                        </tbody>
-                    </table>
-                </div>  
+                            </td>
+                            <td><%=searchResults[i].convertedManaCost%></td>
+                            <td><%=searchResults[i].rarity%></td>
+                            <td>
+                                <button id="<%=searchResults[i].id%>"
+                                    class="btn btn-sm btn-outline-warning fas fa-plus-circle" onclick=handleAdd(event)>
+                                </button>
+                            </td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
             <% } %>
         </div>
     </div>
     <!-- Confirm Reset Modal -->
-    <div class="modal fade" id="confirmResetModal" tabindex="-1" role="dialog" aria-labelledby="confirmResetTitle" aria-hidden="true">
+    <div class="modal fade" id="confirmResetModal" tabindex="-1" role="dialog" aria-labelledby="confirmResetTitle"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content bg-dark">
                 <div class="modal-header">
                     <h5 class="modal-title" id="confirmResetTitle">Confirm Reset</h5>
                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="false">&times;</span></button>
+                        <span aria-hidden="false">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                        <p>Warning: This will remove all cards on this collection! </p>
-                        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-outline-danger float-right" onclick="handleReset()">Confirm</button>
+                    <p>Warning: This will remove all cards on this collection! </p>
+                    <button type="button" class="btn btn-outline-success" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-outline-danger float-right"
+                        onclick="handleReset()">Confirm</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Confirm Accept Modal -->
-    <div class="modal fade" id="confirmCollectionModal" tabindex="-1" role="dialog" aria-labelledby="confirmResetTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content bg-dark">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="confirmResetTitle">Confirm Collection</h5>
-                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+    <div class="modal fade" id="confirmCollectionModal" tabindex="-1" role="dialog" aria-labelledby="confirmResetTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmResetTitle">Confirm Collection</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="false">&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                            <p>Confirm updated/new collection. </p>
-                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-outline-success float-right" onclick="handleAcceptChanges()">Confirm</button>
-                    </div>
+                </div>
+                <div class="modal-body">
+                    <p>Confirm updated/new collection. </p>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-outline-success float-right"
+                        onclick="handleAcceptChanges()">Confirm</button>
                 </div>
             </div>
         </div>
-</div> 
+    </div>
+</div>
 
 <% include partials/footer %>

@@ -46,18 +46,19 @@ async function handleReset() {
   await axios
     .post("reset/")
     .then(() => {
-      if("<%$(collection.cards).length  == 0%>") {
+      if ("<%$(collection.cards).length  == 0%>") {
         console.log("Reset Successfull");
         location.reload();
-    }})
-    .catch((err) => console.log(err));
+      }
+    })
+    .catch(err => console.log(err));
 }
 
 async function handleAcceptChanges() {
   await axios
     .post("addCardsToCollection/")
     .then(console.log("New collection saved."))
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
   location.reload();
 }
 
@@ -65,8 +66,8 @@ function showHideLoader() {
   $(".loader").addClass("show");
 }
 
-$(document).ready( () => {
+$(document).ready(() => {
   $(() => {
-      $('[data-toggle="tooltip"]').tooltip();
-  })
-})
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+});

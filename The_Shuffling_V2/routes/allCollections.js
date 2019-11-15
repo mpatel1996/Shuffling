@@ -3,7 +3,6 @@ var express = require("express"),
   router = express.Router(),
   passport = require("passport"),
   fs = require("fs");
-  
 
 // TEST Collection //
 var data = fs.readFileSync("./temp/testCollection.json");
