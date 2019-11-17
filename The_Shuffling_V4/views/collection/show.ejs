@@ -1,0 +1,36 @@
+<% include ../partials/header %>
+
+<!--   This page displays a user's collection and their subgroups          -->
+
+
+<div class="container-fluid">
+    <div class="container">
+		<% if(currentUser) { %> 
+			<% if(currentUser._id.equals(collection.author.id)){ %>
+				<h1>
+					<a class="btn btn-lg btn-primary btn-block" style="width: fit-content; margin: 0 auto 5% auto; text-align: center;" href="/collection/<%= currentUser.cardcollection.id %>/subgroup/new">Add a container</a>
+				</h1>
+			<% } %>
+		<% } %>
+
+		<div class="grid-holder">
+			<% collection.subgroups.forEach(function(subgroup){ %>
+				<div class="card" style="width: 18rem;">
+					<div class="card-body">
+						<h5 class="card-title"><%= subgroup.name %></h5>
+						<a class="btn btn-info" href="/collection/<%= collection.id %>/subgroup/<%= subgroup._id %>" class="card-link">View Cards</a>
+						<% if (currentUser) { %>
+						<% if (currentUser._id.equals(collection.author.id)){ %>
+							<a class="btn btn-warning" href="/collection/<%= collection._id %>/subgroup/<%= subgroup._id %>/add">Add Cards</a>
+							<form class="delete-form" action="/collection/<%= collection._id %>/subgroup/<%= subgroup._id %>?_method=DELETE" method="POST">
+								<button class="btn btn-danger">Delete</button>
+							</form>
+						<% } %>
+						<% } %>
+					</div>
+				</div>
+			<% }); %>
+		</div>
+</div>
+
+<% include ../partials/footer %>

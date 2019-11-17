@@ -1,0 +1,124 @@
+<% include ../partials/header %>
+
+<script>
+	var cards = <%-JSON.stringify(searchResults)%>;
+	var addedCards = [];
+	
+	function testPost(){	
+		$('#addedCards').val(jQuery.param(addedCards));
+		$('#addCardForm').submit();
+	}
+</script>
+
+<div class="loader">
+    <i id="loader-icon" class="fas fa-cog fa-spin fa-10x"></i>
+	<h3 id="loader-text" style="margin: auto;">Please wait while we look for your card.</h3>
+</div>
+
+<div class="container content-container col-10 col-md-6">
+    <h2>Add cards to <%=subgroup.name %></h2>
+    <!-- SEARCH FORM -->
+    <div class="d-flex justify-content-between flex-wrap overflow-auto">
+        <form class="w-100" action="/collection/<%= currentUser.cardcollection.id %>/subgroup/<%= subgroup._id%>/searchCard" method="POST">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search Card's Name"
+                    aria-label="Search Criteria by Name" name="searchKey">
+                <div class="input-group-append" id="button-addon4">
+                    <button class="btn btn-secondary" type="submit" onclick = showHideLoader()>Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="d-flex flex-wrap justify-content-between mt-3" >              
+     
+        <!-- SEARCH RESULTS -->
+        <div class="card-container">
+            <% if( searchResults.length > 0) { %>
+            <h5>Search results</h5>
+            <div class="table-container overflow-auto">
+                <table class="table table-dark">
+                    <tbody id="search-results">
+                        <% for (let i = 0; i < searchResults.length; i++) { %>
+                        <tr class="card-in-list">
+                            <td
+                            container="body"
+                            data-toggle="tooltip"
+                            data-html="true" 
+                            data-placement="left"
+                            fallback-placement="flip"
+                            title="<div class='conatiner-fluid d-block'>
+                                    <h6><%=searchResults[i].name%></h6>
+                                    <img class='img-fluid  rounded' src='<%=searchResults[i].imageUrl%>'>
+                                    <span><%=searchResults[i].text%></span>
+                                    </div>">
+                            <%=searchResults[i].name%>
+                            </td>
+                            <td><%=searchResults[i].manaCost%></td>
+                            <td><%=searchResults[i].rarity%></td>
+                            <td>
+                                <button id="<%=searchResults[i].id%>"
+										class="btn btn-sm btn-outline-warning fas fa-plus-circle" 
+									 	onclick=handleAdd(cards[<%=i%>])>
+									<!-- onclick="test(searchResults[i]) -->
+                                </button> 
+                        </td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>  
+            <% } %>
+        </div>
+		
+		
+        <!-- COLLECTION CARDS CONTAINER -->
+        <div class="card-container">
+				<form id="addCardForm" action="/collection/<%= currentUser.cardcollection.id %>/subgroup/<%= subgroup._id %>/add" method="POST">
+					<div class="form-group">
+						<input id="addedCards" type="hidden" name="addedCards[]">
+					</div>
+					<div class="form-group">
+						<button class="btn btn-success" onclick="testPost()">Update <%=subgroup.name %></button>
+					</div>	
+				</form>
+			<button class="btn btn-success" onclick="handleAcceptChanges()">Update Now <%=subgroup.name %></button>
+                <!-- </% if(subgroup.cards.length != 0) { %> -->
+                <h5>Collection Name: <%=subgroup.name %></h5>
+                <div class="table-container overflow-auto">
+                    <table class="table table-dark">                  
+                        <tbody id="subgroup">
+                            <% for (let i = 0; i < subgroup.cards.length; i++) { %>
+                            <tr class="card-in-list <%=subgroup.cards[i].id%>">
+                               <td container = "body"
+                                    data-toggle="tooltip"
+                                    data-html="true" 
+                                    data-placement="left"
+                                    fallback-placement="flip"
+                                    title="<div class='conatiner-fluid d-block'>
+                                            <h6><%=subgroup.cards[i].name%></h6>
+                                            <img class='img-fluid  rounded' src='<%=subgroup.cards[i].imageUrl%>'>
+                                            <span><%=subgroup.cards[i].text%></span>
+                                            </div>">
+                                        <%=subgroup.cards[i].name%>
+                                    </td>
+                                <td><%=subgroup.cards[i].manaCost%></td>
+                                <td><%=subgroup.cards[i].rarity%></td>
+                                <!-- <td>
+                                    <button id="</%=subgroup.cards[i].id%>"
+                                            class="btn btn-sm btn-outline-danger fas fa-minus-circle" onclick=handleDelete(event)>
+                                    </button>
+                                </td> -->
+								
+<!-- 	subgroup -> cards[  card             ]				card = {    }			 -->
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- </% } %>   -->
+            </div>
+    </div>
+
+
+
+<% include ../partials/footer %> 
