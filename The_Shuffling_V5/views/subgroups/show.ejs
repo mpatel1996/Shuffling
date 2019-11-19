@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+
+<!--  This page shows a specific subgroup -->
+
+	<div class="container">
+		 <!-- COLLECTION CARDS CONTAINER -->
+		<div class="container content-container pt-5 col-10 col-md-6">
+				<h5>Container: <%=subgroup.name %></h5>
+				<div class="table-container overflow-auto">
+					<table class="table table-dark">                  
+						<tbody id="subgroup">
+							<% for (let i = 0; i < subgroup.cards.length; i++) { %>
+							<tr class="card-in-list <%=subgroup.cards[i].id%>">
+							   <td	container = "body"
+									data-toggle="tooltip"
+									data-html="true" 
+									data-placement="left"
+									fallback-placement="flip"
+									title="<div class='conatiner-fluid d-block'>
+											<p class='h6 font-weight-bold'><%=subgroup.cards[i].name%></p>
+											<img class='img-fluid  rounded' src='<%=subgroup.cards[i].imageUrl%>'>
+											</div>">
+										<%=subgroup.cards[i].name%>
+									</td>
+								<td><%=subgroup.cards[i].manaCost%></td>
+								<td><%=subgroup.cards[i].rarity%></td> 
+							</tr>
+							<% } %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+<% include ../partials/footer %>

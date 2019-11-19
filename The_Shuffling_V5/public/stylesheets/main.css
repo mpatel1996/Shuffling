@@ -1,0 +1,461 @@
+#test{
+	background-color: blue;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+	height:100%;
+}
+
+body {
+ 	background: #2C333D; 
+	width:100%;
+	height:100%;
+	overflow: auto;
+}
+.alert { 
+	float: left;
+}
+.navbar{
+	padding: 0px;
+}
+
+.navbar-brand{
+	margin-left: 7px;
+	transition-timing-function: ease;
+}
+
+.navbar-brand:hover{	
+	transform: scale(1.1,1.1);
+}
+
+.nav-login{
+	margin-right: 10px;
+}
+
+
+#google-logo {
+	width:35px;
+}
+
+ul {
+	list-style-type:none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	color: white;
+	font-weight:bold;
+}
+
+/* dashboard, allCollections, editCollection, collections */
+a {
+  display: block;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.collection-container{
+	width: fit-content; 
+	margin-left: 5%;
+	margin-bottom: 1%;
+	text-align: center; 	
+}
+
+
+.loader {
+  display: none;
+  z-index: 10;
+  background: #4a4848af;
+  position: fixed;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+.loader #loader-icon {
+  color: #ec7716;
+  position: fixed;
+  top: 40%;
+  left: 40%;
+  z-index: 10;
+}
+
+.loader #loader-text{
+  color: #FFFFFF;
+  position: fixed;
+  top: 60%;
+  left: 26%;
+  z-index: 10;
+}
+
+.show {
+  display: block;
+}
+
+
+/* Fix the verticle overflow for grid-holder */
+.grid-holder{
+	overflow-y: auto;
+	display: grid;
+	grid-gap: 10px 10px;
+	grid-template-columns: auto auto auto;
+	padding: 10px;	
+}
+
+.hide {
+  display: none;
+}
+
+.scroll-bar{
+	overflow-y: scroll;
+}
+
+.card-container {
+  max-height: 500px;
+	width:400px;
+}
+
+.table-container {
+  max-height: 500px;
+}
+.table-container .card-in-list {
+  transition: all 0.2s ease-out;
+}
+.table-container .card-in-list:hover {
+  background: #1d1d1d;
+}
+
+/* collection show.ejs */
+.img-prev-container {
+	position:relative;
+	height:100px;
+}
+.img-prev:nth-child(1) {
+	height:100px;
+}
+.img-prev:nth-child(2) {
+	height:100px;
+}
+.img-prev:nth-child(3) {
+	height:100px;
+}
+
+
+/* index css */
+
+input[type=text] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 0;
+	display: inline-block;
+	border: 1px solid;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.indexh1 {
+	align-items: center;
+	color:white;
+	display: flex;
+	overflow: hidden;
+	position: relative;
+	justify-content: center;
+	transform-style: preserve-3d; 
+	perspective: 100px;
+	margin-top: 50px;
+}
+
+.indexh1:before {
+	background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0)),
+	url("../images/index-background.jpg")
+	no-repeat bottom;
+	content("");
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;	
+	z-index: -1;
+}
+
+.indexh1::after {
+	background: F9FCFF;
+	transform: rotateZ(-4deg);
+	content: "";
+	height: 40rem;
+	left: -5%;
+	position: absolute;
+	right: -5%;
+	top: 90%;
+	transform-origin: 0 0;
+	z-index: 0;
+
+}
+
+.white {
+	color: white;
+}
+
+.center {
+	text-align: center;
+}
+
+@-webkit-keyframes pop-in {
+	0% {
+		opacity: 0;
+		transform: translateY(-4rem)scale(0.8);
+	}
+	100% {
+
+	}
+}	
+
+.header-delay {
+	
+	animation-delay: 2s;
+}
+
+.animate-pop-in {	
+	animation: pop-in .6s ease-out forwards;
+}
+
+#index-background {
+	background: url("../images/index-background.jpg") fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%;
+}
+
+.background {
+	background: url("../images/general-background.png") fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 94%;
+	
+}
+
+/* Login/Sign-in Page Style */ 
+#login-header {
+	color: white;
+}
+
+/* Profile Page */
+.user-container{
+	width: 100%;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+
+/* Chat CSS */
+
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 10px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup chat - hidden by default */
+.chat-popup {
+	display: none;
+	position: fixed;
+	width: 500px;
+	bottom: 0;
+	right: 15px;
+	border: 3px solid #f1f1f1;
+	z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+	height: 550px;
+	max-width: 500px;
+	padding: 10px;
+	background-color: white;
+}
+
+/* When the textarea gets focus, do something */
+.form-container textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/send button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+	margin-bottom:2px;
+}
+
+header {
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Comfortaa', sans-serif;
+    margin: 0px;
+}
+
+section#chatroom {
+    border: 5px inset #8258FA;
+    height: 80%;
+	max-width: 500px;
+    overflow: auto;
+}
+
+section#input_zone {
+	display: flex;
+    height: 10%;
+    text-align: center;
+    background-color: #BCA9F5;
+}
+
+.vertical-align {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+input#username {
+    font-family: 'Comfortaa', sans-serif;
+}
+
+input#message {
+    /* display: inline-block; */
+    width: 80%;
+    height: 80%;
+	margin: 0 5px;
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 2vh;
+}
+
+button#send_message {
+    display: inline-block;
+    height: 80%;
+    width: 40%;
+	margin: auto 5px;
+}
+
+p.message {
+    margin: 0px;
+    width: 100%;
+	text-align: left;
+    font-size: 1.5vh;
+    font-family: 'Comfortaa', sans-serif;
+    padding: 1vh;
+}
+
+.message:nth-child(even) {
+    background-color: #81DAF5;
+}
+
+.message:nth-child(odd) {
+    background-color: #81BEF7;
+}
+
+
+
+/* This is Index main.css */
+.section_1
+{
+	margin-top: auto;
+	height: auto;
+}
+
+.container_1
+{
+	padding-top: 750px;
+	float: left;
+  	padding:0 20px;
+  	width:50%;
+  	margin-top: 200px;
+
+}
+
+.section_1_1
+{
+	background-color: red;
+}
+
+.container_1_1
+{
+	color: black;
+	background-color: #F8C471;
+  	float:left;
+  	width:50%;
+  	padding-top: 300px;
+  	padding-bottom: 260px;
+  	padding-left: 35px;
+  	padding-right: 15px;
+  	margin-top: auto;
+  	margin-bottom: auto;
+}
+
+
+/*section_2 text about us*/
+.section_2
+{
+	bottom:0px;
+	padding-left: 30%;
+	padding-top: 100px;
+	padding-bottom: 200px;
+	background-color: #FFFFFFAF;
+}
+
+
+/*Section_3 three images*/
+
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 150px;
+  padding-left: 60px;
+}
+
+/* Clear floats after image containers */
+.row_1 {
+  content: "";
+  clear: both;
+  display: table;
+  padding-left: 100px;
+  padding-right: 100px;
+
+  padding-top: 400px;
+  padding-bottom: 150px;
+
+}
+

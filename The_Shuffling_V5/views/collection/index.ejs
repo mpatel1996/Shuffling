@@ -1,0 +1,20 @@
+<% include ../partials/header %>
+<div class ="background">
+	
+	<div class="container-fluid">		
+		<div class="collection-container container">
+			<h2 style="width: 18rem; width: fit-content; margin: auto; padding: 5%; color: ivory;">User Collections</h2>
+			<div class="d-flex">
+			<% allcollections.forEach(function(cardcollection){ %>
+				<div class="card m-2" style="width: 18rem; margin-bottom: 2%">
+				  <div class="card-body bg-dark rounded">
+					<h5 class="card-title"><%= cardcollection.author.username %></h5>
+					<a href="/collection/<%= cardcollection.id %>" class="card-link">View Collection</a>
+				  </div>
+				</div>
+			<% }); %>
+			</div>
+		</div>
+	</div>
+</div>
+<% include ../partials/footer %>
