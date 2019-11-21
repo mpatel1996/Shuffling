@@ -1,0 +1,22 @@
+<% include ../partials/header %>
+<div class="loader">
+    <i id="loader-icon" class="fas fa-cog fa-spin fa-10x"></i>
+</div>
+<div class="container content-container">
+	<div class="row">
+		<form action="/collection/<%= currentUser.cardcollection.id %>/subgroup" method="POST">
+		  <div class="form-group">
+			<label for="SubgroupNameField">
+				<h1>
+					Container Name
+				</h1>
+			  </label>
+			<input type="text" class="form-control" id="SubGroupNameField" placeholder="Ex: Ravnica Box" name="name">
+		  </div>
+			<a class="btn btn-secondary" href="javascript:history.back()">Go Back</a>
+			<button type="submit" class="btn btn-primary" onclick = showHideLoader()>Submit</button>
+		</form>
+	</div>
+</div>
+
+<% include ../partials/footer %>

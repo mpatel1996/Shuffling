@@ -1,0 +1,112 @@
+<% include ../partials/header %>
+
+<script>
+	var cards = <%-JSON.stringify(searchResults)%>;
+	var addedCards = [];
+	function testPost(){	
+		$('#addedCards').val(jQuery.param(addedCards));
+		$('#addCardForm').submit();
+	}
+</script>
+
+<div class="loader">
+    <i id="loader-icon" class="fas fa-cog fa-spin fa-9x d-inline"></i>
+	<h5 id="loader-text" style = "margin: 20px;">Please wait while we look for your card.</h5>
+</div>
+
+<div class="container content-container col-10">
+	<h2>Add cards to <%=subgroup.name %></h2>
+    <!-- SEARCH FORM -->
+    <div class="d-flex justify-content-between flex-wrap overflow-auto w-100">
+        <form class="w-100" action="/collection/<%= currentUser.cardcollection.id %>/subgroup/<%= subgroup._id%>/searchCard" method="POST">
+            <div class="input-group mb-3 col-md-6 col-sm-12">
+                <input type="text" class="form-control" placeholder="Search Card's Name"
+                    aria-label="Search Criteria by Name" name="searchKey">
+                <div class="input-group-append" id="button-addon4">
+                    <button id="searchButton" class="btn btn-primary border border-dark" type="submit" onclick = showHideLoader()>Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+	<div class="content-container d-flex flex-wrap justify-content-between mt-3">   
+		<!-- COLLECTION CARDS CONTAINER -->
+		<div class="card-container container">
+			<h5>Collection Name: <%=subgroup.name %></h5>
+			<div class="d-flex">
+				<button id="updateButton" class="btn btn-success mr-1 mb-2 w-50" onclick="handleAcceptChanges()" disabled="disabled">Update <%=subgroup.name %></button>
+				<button class="btn btn-primary ml-1 mb-2 w-50">
+					<a class="text-white" href="/collection/<%= currentUser.cardcollection.id %>/subgroup/<%= subgroup._id %>">View <%=subgroup.name %> </a>
+				</button>
+			</div>
+
+				<div class="table-container overflow-auto" id="cardHover">
+					<table class="table table-dark">                  
+						<tbody id="subgroup">
+							<% for (let i = 0; i < subgroup.cards.length; i++) { %>
+							<tr class="card-in-list <%=subgroup.cards[i].id%>">
+							   <td container = "body"
+									data-toggle="tooltip"
+									data-html="true" 
+									data-placement="left"
+									fallback-placement="flip"
+									title="<div class='conatiner-fluid d-block'>
+											<p class='h6 font-weight-bold'><%=subgroup.cards[i].name%></p>
+											<img class='img-fluid  rounded' src='<%=subgroup.cards[i].imageUrl%>'>
+											</div>">
+										<%=subgroup.cards[i].name%>
+								</td>
+								<td><%=subgroup.cards[i].manaCost%></td>
+							<td><%=subgroup.cards[i].rarity%></td>
+						</tr>
+						<% } %>
+					</tbody>
+				</table>
+			</div>
+			<!-- </% } %>   -->
+		</div>
+	<script>
+		$('#cardHover').tooltip({ boundary: 'window' });
+	</script>
+		
+        <!-- SEARCH RESULTS -->
+        <div class="card-container container">
+            <% if( searchResults && searchResults.length > 0) { %>
+			<h5>Search results</h5>
+            <div class="table-container overflow-auto">
+                <table class="table table-dark">
+                    <tbody id="search-results">
+                        <% for (let i = 0; i < searchResults.length; i++) { %>
+                        <tr class="card-in-list">
+                            <td
+                            container="body"
+                            data-toggle="tooltip"
+                            data-html="true" 
+                            data-placement="left"
+                            fallback-placement="flip"
+                            title="<div class='conatiner-fluid d-block'>
+								   <p class='h6 font-weight-bold'><%=searchResults[i].name%></p>
+                                    <img class='img-fluid  rounded' src='<%=searchResults[i].imageUrl%>'>
+                                    </div>">
+                            <%=searchResults[i].name%>
+                            </td>
+                            <td><%=searchResults[i].manaCost%></td>
+                            <td><%=searchResults[i].rarity%></td>
+                            <td>
+                                <button id="<%=searchResults[i].id%>"
+										class="btn btn-sm btn-outline-warning fas fa-plus-circle" 
+									 	onclick=handleAdd(cards[<%=i%>])>
+									<!-- onclick="test(searchResults[i]) -->
+                                </button> 
+                        </td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>  
+            <% } %>
+        </div>
+    </div>
+</div>
+
+
+<% include ../partials/footer %> 

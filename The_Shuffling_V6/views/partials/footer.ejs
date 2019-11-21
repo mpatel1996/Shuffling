@@ -1,0 +1,57 @@
+
+</div>
+
+<!-- Start the chat button -->
+	<button class="open-button" onclick="openForm()" style="max-width: fit-content;">Chat</button>
+
+	<div class="mb-2 chat-popup" id="myForm" style="display: none;">
+		
+	  	<form class="form-container" style="display: inline-flex;" >			
+			<div class="room" style="display: flow-root;">
+				
+				<section style="height: 70px;">
+				  <div id="change_username">
+					<input id="username" type="text" style="height: 40px;">
+					<button id="send_username" type="button" class="btn btn-outline-dark" style="padding: 0px 0px 0px 0px;">Change Username</button>
+				  </div>
+				</section>
+			
+				<section id="chatroom">
+					<section id="feedback" style="font-size: 12px"></section>
+				</section>
+				
+				<section id="message_zone" style="d-flex" > 
+					  <input id="message" class="vertical-align" type="text" >
+					  <button id="send_message" type="button">Send</button>
+                </section>
+                
+                <button type="button" class="btn cancel mb-2 mt-2" onclick="closeForm()">Close</button>                
+			</div>
+		</form>
+		
+	</div>
+				<!-- End the Chat button -->
+
+
+<script>
+	function openForm() {
+	  document.getElementById("myForm").style.display = "block";
+	}
+
+	function closeForm() {
+	  document.getElementById("myForm").style.display = "none";
+	}
+	</script>
+	
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chat_script.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- js for dashboard and edit collection -->
+<script type="text/javascript" src="/js/collectionPublic.js"></script>
+	<!-- main js page -->
+	<script src="/js/main.js"></script>
+	</body>
+</html>

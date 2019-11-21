@@ -1,0 +1,22 @@
+<% include partials/header %>
+
+
+
+<div class="user-container">
+	<div class="row">
+		<div style="width: fit-content; margin: 25px auto 5% auto; text-align: center; ">
+			<div style="border-radius: 5px;" >
+				<!-- <h3 style= "color: ivory;">Username</h3> -->
+				<h1 style= "color: ivory; margin-top: 50px;"><%= currentUser.username.substr(0, currentUser.username.indexOf("#")) %></h1>
+				<div id="ImageContainer">
+    				<img  style="max-width:300px;" src="<%= currentUser.imgUrl %>">
+				</div>
+				<p></p>
+				<a class="btn btn-lg btn-primary btn-block" href="/profile/<%= currentUser._id %>/edit">Edit Username or Profile Pic</a>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+<% include partials/footer %>
