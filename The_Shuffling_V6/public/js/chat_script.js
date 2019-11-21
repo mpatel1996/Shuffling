@@ -10,9 +10,6 @@ $(function(){
 	var chatroom = $("#chatroom")
 	var feedback = $("#feedback")
 	
-	// adding unique user feature
-	var userList = []
-	
 	//Emit message
 	send_message.click(function(){	
 		socket.emit('new_message', {message : message.val()})
